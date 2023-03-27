@@ -1,6 +1,7 @@
 package nvt.doan.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,11 +24,13 @@ public class User {
     private String username;
     private String email;
     private String address;
+    private String phone;
+    private String gender;
     private int age;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private  Role role ;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
 }

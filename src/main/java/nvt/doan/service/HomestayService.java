@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface HomestayService extends BaseService<Homestay,Integer> {
+    Homestay getHomestayById(int homestayId);
 }

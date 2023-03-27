@@ -1,5 +1,6 @@
 package nvt.doan.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+
+
+
 
 @Entity
 @AllArgsConstructor
@@ -22,8 +26,11 @@ public class Booking {
     private LocalDate endDate;
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "userId")
+    @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "booking")
-    private List<Homestay> homestayList;
+    @ManyToOne
+    @JoinColumn(name = "homestay_id")
+    @JsonIgnore
+    private Homestay homestay;
 }

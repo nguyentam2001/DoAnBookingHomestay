@@ -6,14 +6,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/view")
 public class ViewController {
-    @GetMapping("/")
-    public String adminHome(){
+    @GetMapping("/index")
+    public String index(){
             return "admin/index";
     }
 
     @GetMapping("/users")
-    public String userList(){
-        return "admin/management-user-view";
+    public String users(){
+        return "admin/user";
+    }
+
+    @GetMapping("/homestay")
+    public String homestay(){
+        return "admin/homestay";
+    }
+
+    @GetMapping("/homestay-form")
+    public String homestayForm(){
+        return "admin/homestay-form";
     }
 }

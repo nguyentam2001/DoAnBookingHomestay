@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Startmin - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="../css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../css/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link href="../css/startmin.css" rel="stylesheet">
+    <link href="../css/common.css">
+    <!-- Custom Fonts -->
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+          integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Startmin</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+        </ul>
+
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown navbar-inverse">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                <span class="pull-right text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="/view/index"><i class="fa fa-dashboard fa-fw"></i> Tổng quan</a>
+                    </li>
+
+                    <li>
+                        <a href="/view/homestay"><i class="fa fa-table fa-fw"></i> Quản lý Homestay</a>
+                    </li>
+                    <li>
+                        <a href="/view/users"><i class="fa fa-user fa-fw"></i> Quản lý Tài khoản</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Thông tin homestay</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div  class="row">
+                <a class="ml-16 mb-16 btn btn-primary"  href="/view/homestay" ><i class="fa-solid fa-backward"></i> Quay lại</a>
+            </div>
+            <!-- /.row -->
+            <div  class="row">
+                <form action=""  class="form-content margin-top-24 form" role="form">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="form-label font-weight-bold">Tên homestay<span class="error"> </span> </label>
+                                    <input  type="hidden" name="userId" class="form-control" >
+                                    <input type="text" name="homestayName" class="form-control"  placeholder="Homestay">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="addressId">Địa chỉ</label>
+                                    <select class="form-control" name="addressId" id="addressId" >
+                                        <option value="1" >Hà Nội</option>
+                                        <option value="2">Đà Lạt</option>
+                                        <option value="3">Bắc Giang</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="status">Trạng thái</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option value=true>Trống</option>
+                                        <option value=false>Thuê</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="homestayType">Loại homestay</label>
+                                    <select class="form-control" name="homestayType" id="homestayType">
+                                        <option value="1">Thường</option>
+                                        <option value="2">Cao cấp</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="status">Bao nhiêu khách có thể lưu trú?</label>
+                                    <div class="flex-basic">
+                                        <span class="minus">-</span>
+                                        <input class="form-control input-counter" type="text" value="1"/>
+                                        <span class="plus">+</span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="form-label font-weight-bold" for="price">Giá<span class="error"> </span> </label>
+                                    <input type="text" name="price" class="form-control" id="price"  placeholder="Giá">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-xl-12">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12 scrollbar" id="style-4">
+                                            <table class="table table-bordered table-scroll mt-3" id="roomTable">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Giường</th>
+                                                    <th scope="col">Diện tích(m2)</th>
+                                                    <th scope="col">Mô tả</th>
+                                                    <th scope="col"><p class="btn btn-info" id="addProduct"><i class="fa fa-plus"></i></p></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="roomBody">
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control bedNumbers"  >
+                                                            <option value="1">Đơn</option>
+                                                            <option value="2">Đôi</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text"  id="area" class="form-control roomArea"  placeholder="diện tích">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text"  class="form-control roomDescription"  placeholder="mô tả">
+                                                    </td>
+                                                    <td><button class="btn btn-danger remove"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="form-label font-weight-bold">Ảnh homestay<span class="error"> </span> </label>
+                                <div class="upload__box">
+                                    <div class="upload__btn-box">
+                                        <label class="upload__btn">
+                                            <p>Tải ảnh</p>
+                                            <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                                        </label>
+                                    </div>
+                                    <div class="upload__img-wrap"></div>
+                                </div>
+                            </div>
+                                </div >
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        <!-- row           -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script src="../js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../js/metisMenu.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- DataTables JavaScript -->
+<script src="../js/dataTables/jquery.dataTables.min.js"></script>
+<script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
+<script src="../js/toastr-config.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="../js/startmin.js"></script>
+<script src="../js/utils.js"></script>
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script src="../js/multiple-image.js"></script>
+<script src="../js/admin/homestay.js"></script>
+<script src="../js/input-counter.js"></script>
+</body>
+</html>

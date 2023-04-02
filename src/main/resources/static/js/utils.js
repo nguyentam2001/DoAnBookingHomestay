@@ -17,6 +17,11 @@ class BookingURL{
 
 class HomestayURL{
      static ROOT="/api/v1/homestays/"
+}
 
+
+class RoomURL{
+     static ROOT="/api/v1/rooms/"
+      static GET_ROOM="/api/v1/rooms/room"
 }
 

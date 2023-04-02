@@ -1,0 +1,15 @@
+package nvt.doan.service;
+
+import nvt.doan.entities.Room;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Collection;
+import java.util.List;
+
+public interface RoomService extends BaseService<Room,Integer>{
+    Room getRoomById(Integer id);
+
+    Room createRoom(MultipartFile[] files, String applicant);
+
+    Collection<Room> getRoomByHomestayId(Integer homestayId);
+}

@@ -136,10 +136,8 @@ let htmlHeader=`
                                                     <th>mã</th>
                                                     <th>Ngày đặt</th>
                                                     <th>Ngày trả</th>
-                                                    <th> Homestay</th>
+                                                    <th> Căn hộ</th>
                                                      <th>Giá </th>
-                                                    <th>Số phòng</th>
-                                                    <th>Địa chỉ</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="booking-list">
@@ -172,10 +170,8 @@ arr.forEach((el) => {
               <td>${el.requestId}</td>
               <td>${el.startDate}</td>
               <td>${el.endDate}</td>
-              <td>${el.homestayName}</td>
-              <td>${el.price}</td>
-              <td>${el.numberOfRoom}</td>
-              <td>${el.addressName}</td>
+              <td>${el.roomName}</td>
+              <td>${el.totalPrice}</td>
             </tr>;
     `
 })

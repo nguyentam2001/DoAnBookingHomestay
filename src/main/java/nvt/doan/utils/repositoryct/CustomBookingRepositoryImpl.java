@@ -14,24 +14,20 @@ public class CustomBookingRepositoryImpl implements CustomBookingRepository {
     private EntityManager entityManager;
     @Override
     public List<BookingDTO> findBookingDetailByUserId(Integer userId) {
-        return (List<BookingDTO>) entityManager.createNativeQuery("select request_id as requestId,homestay_name as homestayName,start_date as startDate,end_date as endDate,count(r.room_id) as numberOfRoom, price,address_name as addressName from booking b\n" +
-                        "join homestay h on  b.homestay_id = h.homestay_id \n" +
-                        "join users u on u.user_id= b.user_id\n" +
-                        "join address a on a.address_id= h.address_id\n" +
-                        "join room r on h.homestay_id= r.homestay_id\n" +
-                        "where u.user_id=:user_id group by request_id").unwrap(Query.class)
+        return (List<BookingDTO>) entityManager.createNativeQuery("select request_id as requestId,room_name as roomName,start_date as startDate,end_date as endDate,sum(price) as totalPrice from booking b\n" +
+                        "join room r on  r.room_id = b.room_id\n" +
+                        "where b.user_id=:user_id group by request_id").unwrap(Query.class)
                 .setParameter("user_id", userId)
                 .setResultTransformer(new ResultTransformer() {
                     @Override
                     public Object transformTuple(Object[] objects, String[] strings) {
+//BookingDTO(int requestId, LocalDate startDate, LocalDate endDate, String roomName, double totalPrice)
                         return new BookingDTO(
                                 ((Number) objects[0]).intValue(),
                                 (DateUtil.convertStringToLocalDate(objects[2].toString())),
                                 (DateUtil.convertStringToLocalDate(objects[3].toString())),
                                 ((String) objects[1]),
-                                ((Number) objects[4]).intValue(),
-                                ((Number) objects[5]).doubleValue(),
-                                ((String) objects[6]));
+                                ((Number) objects[4]).intValue());
                     }
                     @Override
                     public List transformList(List list) {

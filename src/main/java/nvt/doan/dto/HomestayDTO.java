@@ -1,33 +1,26 @@
-package nvt.doan.entities;
+package nvt.doan.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import nvt.doan.entities.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
-
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Homestay {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class HomestayDTO{
     private int homestayId;
     private String homestayName;
-    @ManyToOne
-    @JoinColumn(name = "address_id")
     private  Address address;
     private  String description;
-    @OneToMany(mappedBy ="homestay")
-    @JsonIgnore
     private List<HomestayRate> homestayRates;
-    @OneToMany(mappedBy ="homestay",cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Room> rooms;
+
 }

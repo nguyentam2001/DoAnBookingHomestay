@@ -30,7 +30,7 @@ public class Booking {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "homestay_id")
+    @JoinColumn(name = "room_id")
     @JsonIgnore
-    private Homestay homestay;
+    private Homestay room;
 }

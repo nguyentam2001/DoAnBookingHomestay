@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{users/head :: #head}">
+</head>
+<!-- body -->
+
+<body class="main-layout">
+   <!-- loader  -->
+   <!-- <div class="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+      </div> -->
+   <!-- end loader -->
+   <!-- header -->
+   <header th:replace="~{users/navigation :: #userHeader}"></header>
+   <!--      <header th:replace="~{users/navigation}::#userHeader">-->
+
+   <!-- end header inner -->
+   <!-- end header -->
+   <!-- banner -->
+   <div th:replace="~{users/navigation::#userCarousel}"></div>
+   <!-- end header inner -->
+   <!-- end header -->
+   <!-- end banner -->
+   <!-- form_lebal -->
+   <section>
+      <div class="container">
+      </div>
+   </section>
+   <!-- end form_lebal -->
+   <!-- choose  section -->
+   <div class="choose mt-2">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-4">
+               <div class="row">
+                  <form method="get" action="/view/users/search" class="form_book mt-0 ml-0 pl-0 pt-0">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <label class="date">Địa chỉ</label>
+                           <select class="book_n" name="address" id="address">
+                              <th:block th:each="ele:${address}">
+                                 <option th:value="${ele.addressId}"
+                                         th:text="${ele.addressName}"
+                                         th:selected="${ele.addressId==selectedAddress.addressId}">
+                                 </option>
+                              </th:block>
+                           </select>
+                        </div>
+                        <div class="col-md-12">
+                           <label class="date">Ngày nhận phòng</label>
+                           <input class="book_n" type="date" name="checkIn" th:value="${checkIn}" >
+                        </div>
+                        <div class="col-md-12">
+                           <label class="date">Ngày trả phòng</label>
+                           <input class="book_n" type="date" name="checkOut" th:value="${checkOut}" >
+                        </div>
+                        <div class="col-md-12">
+                           <label class="date">Số lượng khách</label>
+                           <input class="book_n" placeholder="2" type="type" name="numberPersons" th:value="${numberPersons}">
+                        </div>
+                        <div class="col-md-12">
+                           <button class="book_btn mw-100 t-btn-book">Tìm kiếm</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <div class="col-md-8 ">
+               <div class="row mb-2">
+                  <div class="col-md-12 mb-4">
+                     <h4 class="label label-default mb-0">Tìm thấy <span th:text="${numberOfHomestays}"></span> Homestay</label></h4>
+                  </div>
+               </div>
+               <div class="row mb-4">
+                  <div class="col-md-6">
+                     <div class="t-title">Theo xếp hạng</div>
+                     <div class="form-group">
+                        <select class="book_n" name="rate" id="rate">
+                           <th:block th:each="ele:${address}">
+                              <option th:value="${ele.addressId}"
+                                      th:text="${ele.addressName}"
+                                      th:selected="${ele.addressId==selectedAddress.addressId}">
+                              </option>
+                           </th:block>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+
+                  </div>
+               </div>
+
+               <div th:each="ele:${homestayClientDTOList}">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
+                           <div class="row">
+                              <div class="col-sm-4">
+                                 <img class="d-block w-100 h-100" src="https://picsum.photos/150?image=641" alt="">
+                              </div>
+                              <div class="col-sm-8">
+                                 <div class="card-block">
+                                    <!--           <h4 class="card-title">Small card</h4> -->
+                                    <p th:text="${ele.homestayName}"></p>
+                                    <p th:text="${ele.description}"></p>
+                                    <p>Hiện tại đang có: <span th:text="${ele.roomAvailable}"></span> căn hộ trống</p>
+                                    <p>Giá giao động mỗi căn hộ/đêm từ: <span th:text="${ele.roomAvailable}"></span> đến <span th:text="${ele.roomAvailable}"></span> VND</p>
+                                    <br>
+                                    <a href="#" class="btn btn-primary btn-sm float-right">Read More</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+   <!-- end testimonial -->
+   <!--  footer -->
+   <footer th:replace="~{users/footer :: #footer}">
+   </footer>
+   <!-- end footer -->
+   <!-- Javascript files-->
+   <div th:replace="~{users/js-src :: #mainJs}"></div>
+</body>
+
+</html>

@@ -19,6 +19,7 @@ import nvt.doan.entities.Booking;
 import nvt.doan.entities.Role;
 import nvt.doan.entities.User;
 import nvt.doan.repository.UserRepository;
+import nvt.doan.service.account.AccountService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -143,7 +144,7 @@ class AccountServiceTest {
         //   Diffblue Cover tried to run the arrange/act section, but the method under
         //   test threw
         //   java.lang.IllegalArgumentException: Cannot pass null or empty values to constructor
-        //       at nvt.doan.service.AccountService.loadUserByUsername(AccountService.java:31)
+        //       at nvt.doan.service.account.AccountService.loadUserByUsername(AccountService.java:31)
         //   See https://diff.blue/R013 to resolve this issue.
 
         Role role = new Role();
@@ -197,7 +198,7 @@ class AccountServiceTest {
         //   Diffblue Cover tried to run the arrange/act section, but the method under
         //   test threw
         //   java.lang.IllegalArgumentException: A granted authority textual representation is required
-        //       at nvt.doan.service.AccountService.loadUserByUsername(AccountService.java:29)
+        //       at nvt.doan.service.account.AccountService.loadUserByUsername(AccountService.java:29)
         //   See https://diff.blue/R013 to resolve this issue.
 
         Role role = new Role();

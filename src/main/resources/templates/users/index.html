@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   <head th:replace="~{users/head :: #head}">
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <!-- <div class="loader_bg">
+         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+      </div> -->
+      <!-- end loader -->
+      <!-- header -->
+         <header th:replace="~{users/navigation :: #userHeader}"></header>
+<!--      <header th:replace="~{users/navigation}::#userHeader">-->
+
+      <!-- end header inner -->
+      <!-- end header -->
+      <!-- banner -->
+      <div th:replace="~{users/navigation::#userCarousel}"></div>
+      <!-- end banner -->
+      <!-- form_lebal -->
+      <section>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <form class="t-form_book" method="get" action="/view/users/search">
+                     <div class="row">
+                        <div class="col-md-2">
+                           <label class="date t-title">Địa chỉ</label>
+                           <select class="book_n" name="address" id="address">
+                              <th:block th:each="ele:${address}">
+                                 <option th:value="${ele.addressId}" th:text="${ele.addressName}">
+                                 </option>
+                              </th:block>
+                           </select>
+                        </div>
+                        <div class="col-md-3">
+                           <label class="date t-title">Ngày nhận</label>
+                           <input class="book_n" name="checkIn" placeholder="Ngày nhận" type="date" th:value="${checkIn}"  >
+                        </div>
+                        <div class="col-md-3">
+                           <label class="date t-title">Ngày trả</label>
+                           <input class="book_n" name="checkOut" placeholder="Ngày trả" type="date" th:value="${checkOut}"  >
+                        </div>
+                        <div class="col-md-2">
+                           <label class="date t-title">Số khách</label>
+                           <input class="book_n" placeholder="Số khách" type="number" name="numberPersons" value="2">
+                        </div>
+                        <div class="col-md-2">
+                           <button class="book_btn w-75 t-m-top-bottom-46">Tìm kiếm</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end form_lebal -->
+      <!-- choose  section -->
+      <div class="choose mt-4">
+         <div class="container">
+            <div class="row">
+              
+               <div class="col-md-12">
+
+                  <div class="row">
+                     <div class=" mb-4">
+                        <div id="myCarousel" class="carousel slide testimonial_Carousel " data-ride="carousel">
+                           <div class="carousel-inner">
+                              <div class="carousel-item">
+                                 <div class="container">
+                                    <div class="carousel-caption ">
+                                       <div class="row">
+                                          <div class="col-md-12 margin_boot">
+                                             <div class="test_box">
+                                                <h4>Mark jonson</h4>
+                                                <i><img src="/images/user/te1.png" alt="#"></i>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="carousel-item">
+                                 <div class="container">
+                                    <div class="carousel-caption">
+                                       <div class="row">
+                                          <div class="col-md-6 margin_boot">
+                                             <div class="test_box">
+                                                <h4>Mark jonson</h4>
+                                                <i><img src="/images/user/te1.png" alt="#"></i>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="test_box">
+                                                <h4>Mac Du</h4>
+                                                <i><img src="/images/user/te1.png" alt="#"></i>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="carousel-item active">
+                                 <div class="container">
+                                    <div class="carousel-caption">
+                                       <div class="row">
+                                          <div class="col-md-6 margin_boot">
+                                             <div class="test_box">
+                                                <h4>Mark jonson</h4>
+                                                <i><img src="/images/user/te1.png" alt="#"></i>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="test_box">
+                                                <h4>Mac Du</h4>
+                                                <i><img src="/images/user/te1.png" alt="#"></i>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Previous</span>
+                           </a>
+                           <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Next</span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box">
+                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box">
+                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box">
+                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
+                        </div>
+                     </div>
+                    
+                    
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box">
+                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box">
+                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end choose  section -->
+      <!-- our  section -->
+      <div class="our">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-6">
+                  <div class="img_box">
+                     <figure><img src="/images/user/img4.jpg" alt="#"/></figure>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="our_box">
+                     <div class="titlepage">
+                        <h2><span class="text_norlam">Our Best </span> <br>Breakfast</h2>
+                     </div>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                     <a class="read_more" href="#">Read More</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end our  section -->
+      <!-- about -->
+      <div id="about"  class="about">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-6">
+                  <div class="about_text">
+                     <div class="titlepage">
+                        <h2>About Our Hotel</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="about_img">
+                     <figure><img src="/images/user/about_img.jpg" alt="#"/></figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end about -->
+      <!-- testimonial -->
+      <div class="testimonial">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h2>Testimonial</h2>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div id="myCarousel2" class="carousel slide testimonial_Carousel " data-ride="carousel">
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <div class="container">
+                              <div class="carousel-caption ">
+                                 <div class="row">
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <h4>Mark jonson</h4>
+                                          <i><img src="/images/user/te1.png" alt="#"/></i>
+                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <div class="test_box">
+                                          <h4>Mac Du</h4>
+                                          <i><img src="/images/user/te1.png" alt="#"/></i>
+                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="container">
+                              <div class="carousel-caption">
+                                 <div class="row">
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <h4>Mark jonson</h4>
+                                          <i><img src="/images/user/te1.png" alt="#"/></i>
+                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <div class="test_box">
+                                          <h4>Mac Du</h4>
+                                          <i><img src="/images/user/te1.png" alt="#"/></i>
+                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="container">
+                              <div class="carousel-caption">
+                                 <div class="row">
+                                    <div class="col-md-6 margin_boot">
+                                       <div class="test_box">
+                                          <h4>Mark jonson</h4>
+                                          <i><img src="/images/user/te1.png" alt="#"/></i>
+                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <div class="test_box">
+                                          <h4>Mac Du</h4>
+                                          <i><img src="/images/user/te1.png" alt="#"/></i>
+                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end testimonial -->
+      <!--  footer -->
+      <footer th:replace="~{users/footer :: #footer}">
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+
+    <div th:replace="~{users/js-src :: #mainJs}"></div>
+   </body>
+</html>
+

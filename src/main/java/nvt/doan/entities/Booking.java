@@ -24,6 +24,7 @@ public class Booking {
     private int requestId;
     private LocalDate startDate;
     private LocalDate endDate;
+    private Integer bookingStatus;
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "userId")
     @JsonIgnore

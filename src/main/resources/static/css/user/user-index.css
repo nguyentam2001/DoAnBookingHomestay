@@ -107,4 +107,33 @@ body {
    width: 200px;
    height: 200px;
 }
+.t-border-radius-img{
+    width: 100%;
+    border-radius: 10px;
+}
+.t-height-190{
+    height:220px;
+}
+
+.t-card-title-place{
+    align-items: center;
+    top: 10px;
+    /* font-size: 20px !important; */
+    display: flex;
+    margin-left: 10px;
+}
+.t-card-title-place p{
+    font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        margin-right: 8px;
+}
+
+.t-card-title-place img{
+    width: 20px;
+    height: 16px;
+}
+.t-cursor-pointer{
+    cursor: pointer;
+}
 

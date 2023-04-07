@@ -25,3 +25,7 @@ class RoomURL{
       static GET_ROOM="/api/v1/rooms/room"
 }
 
+class PromotionURL{
+     static ROOT="/api/v1/promotion/"
+}
+

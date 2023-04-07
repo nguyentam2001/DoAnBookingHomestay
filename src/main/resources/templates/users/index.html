@@ -62,101 +62,87 @@
       <div class="choose mt-4">
          <div class="container">
             <div class="row">
-              
                <div class="col-md-12">
+                  <div class="row">
+<!--                        <div id="myCarousel" class="carousel slide testimonial_Carousel " data-ride="carousel">-->
+<!--                           <div class="carousel-inner">-->
+<!--                              <div class="carousel-item active">-->
+<!--                                 <div class="container">-->
+<!--                                    <div class="carousel-caption ">-->
+<!--                                       <div class="row">-->
+<!--                                          <div class="col-md-12 margin_boot">-->
+<!--                                             <div class="test_box">-->
+<!--                                                <h4>Mark jonson</h4>-->
+<!--                                                <i><img src="/images/user/te1.png" alt="#"/></i>-->
+<!--                                                <p>There are many variations</p>-->
+<!--                                             </div>-->
+<!--                                          </div>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+<!--                              <div th:each="ele : ${promotions}"-->
+<!--                                   class="carousel-item">-->
+<!--                                 <div class="container">-->
+<!--                                    <div class="carousel-caption ">-->
+<!--                                       <div class="row">-->
+<!--                                          <div class="col-md-12 margin_boot">-->
+<!--                                             <div class="row">-->
+<!--                                                <div class="test_box">-->
+<!--                                                   <p th:text="${ele.promotionName}"></p>-->
+<!--                                                   <p><span th:text="${ele.homestay.homestayName}"></span> Bắt đầu từ <span th:text=${ele.startDate}></span>đến <span th:text=${ele.endDate}></span></p>-->
+<!--                                                   <p th:text="${ele.description}"></p>-->
+<!--                                                   <p >Ưu đãi lên đến <h2 th:text="${ele.percentDiscount}">%</h2></p>-->
+<!--                                                </div>-->
+<!--                                             </div>-->
+<!--                                          </div>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+<!--                           </div>-->
+<!--                           <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">-->
+<!--                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                           <span class="sr-only">Previous</span>-->
+<!--                           </a>-->
+<!--                           <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">-->
+<!--                           <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                           <span class="sr-only">Next</span>-->
+<!--                           </a>-->
+<!--                        </div>-->
+                     </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                              <figure>
+                                 <input type="hidden" name="address" value="1">
+                                 <img class="t-border-radius-img t-height-190" src="/images/user/Hanoi-2.jpg" alt="#"/>
+                              </figure>
+                              <div class="position-absolute t-card-title-place" >
 
+                                 <p class="mb-0">Hà Nội</p>
+                                 <img src="/images/user/Vietnam.png" alt="#"/>
+                              </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
                   <div class="row">
-                     <div class=" mb-4">
-                        <div id="myCarousel" class="carousel slide testimonial_Carousel " data-ride="carousel">
-                           <div class="carousel-inner">
-                              <div class="carousel-item">
-                                 <div class="container">
-                                    <div class="carousel-caption ">
-                                       <div class="row">
-                                          <div class="col-md-12 margin_boot">
-                                             <div class="test_box">
-                                                <h4>Mark jonson</h4>
-                                                <i><img src="/images/user/te1.png" alt="#"></i>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="carousel-item">
-                                 <div class="container">
-                                    <div class="carousel-caption">
-                                       <div class="row">
-                                          <div class="col-md-6 margin_boot">
-                                             <div class="test_box">
-                                                <h4>Mark jonson</h4>
-                                                <i><img src="/images/user/te1.png" alt="#"></i>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                             <div class="test_box">
-                                                <h4>Mac Du</h4>
-                                                <i><img src="/images/user/te1.png" alt="#"></i>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="carousel-item active">
-                                 <div class="container">
-                                    <div class="carousel-caption">
-                                       <div class="row">
-                                          <div class="col-md-6 margin_boot">
-                                             <div class="test_box">
-                                                <h4>Mark jonson</h4>
-                                                <i><img src="/images/user/te1.png" alt="#"></i>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                             <div class="test_box">
-                                                <h4>Mac Du</h4>
-                                                <i><img src="/images/user/te1.png" alt="#"></i>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+                     <div class="col-md-12">
+                        <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                           <figure>
+                              <input type="hidden" name="address" value="2">
+                              <img class="t-border-radius-img t-height-190" src="/images/user/HCM.jpg" alt="#"/>
+                           </figure>
+                           <div class="position-absolute t-card-title-place" >
+                              <p class="mb-0">TP. Hồ Chí Minh</p>
+                              <img src="/images/user/Vietnam.png" alt="#"/>
                            </div>
-                           <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                           <span class="sr-only">Previous</span>
-                           </a>
-                           <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                           <span class="sr-only">Next</span>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="img_box">
-                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="img_box">
-                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
                         </div>
                      </div>
                   </div>
@@ -166,19 +152,16 @@
                <div class="col-md-4">
                   <div class="row">
                      <div class="col-md-12">
-                        <div class="img_box">
-                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
-                        </div>
-                     </div>
-                    
-                    
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="img_box">
-                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
+                           <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                           <figure>
+                              <input type="hidden" name="address" value="3">
+                              <img class="t-border-radius-img t-height-190" src="/images/user/Hoian.jpg" alt="#"/>
+                           </figure>
+                           <div class="position-absolute t-card-title-place" >
+
+                              <p class="mb-0">Hội An</p>
+                              <img src="/images/user/Vietnam.png" alt="#"/>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -186,8 +169,31 @@
                <div class="col-md-4">
                   <div class="row">
                      <div class="col-md-12">
-                        <div class="img_box">
-                           <figure><img src="/images/user/img1.jpg" alt="#"/></figure>
+                        <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                           <figure>
+                              <input type="hidden" name="address" value="4">
+                              <img class="t-border-radius-img t-height-190" src="/images/user/Ninhbinh.jpg" alt="#"/>
+                           </figure>
+                           <div class="position-absolute t-card-title-place" >
+                              <p class="mb-0">Ninh Bình</p>
+                              <img src="/images/user/Vietnam.png" alt="#"/>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                           <figure>
+                              <input type="hidden" name="address" value="5">
+                              <img class="t-border-radius-img t-height-190" src="/images/user/Danang.jpg" alt="#"/>
+                           </figure>
+                           <div class="position-absolute t-card-title-place" >
+                              <p class="mb-0">Đà Nẵng</p>
+                              <img src="/images/user/Vietnam.png" alt="#"/>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -197,21 +203,21 @@
       </div>
       <!-- end choose  section -->
       <!-- our  section -->
-      <div class="our">
-         <div class="container">
-            <div class="row d_flex">
+      <div class="our mt-0">
+         <div class="container ">
+            <div class="row d_flex ">
                <div class="col-md-6">
                   <div class="img_box">
-                     <figure><img src="/images/user/img4.jpg" alt="#"/></figure>
+                     <figure><img class="t-border-radius-img mb-2" src="/images/user/img4.jpg" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="our_box">
                      <div class="titlepage">
-                        <h2><span class="text_norlam">Our Best </span> <br>Breakfast</h2>
+                        <h2><span class="text_norlam">Bữa sáng </span> </h2>
                      </div>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
-                     <a class="read_more" href="#">Read More</a>
+                     <p>Đến với NTV homestay quý khách sẽ được trải nghiệm những dịch vụ sang trọng, phục vụ tận tình theo yêu cầu quý khách, đặc biệt là sự phong phú về ẩm thực theo nét văn hoá của từng vùng miền và dùng bữa sáng hoàn toàn miễn phí. </p>
+
                   </div>
                </div>
             </div>
@@ -219,120 +225,9 @@
       </div>
       <!-- end our  section -->
       <!-- about -->
-      <div id="about"  class="about">
-         <div class="container">
-            <div class="row d_flex">
-               <div class="col-md-6">
-                  <div class="about_text">
-                     <div class="titlepage">
-                        <h2>About Our Hotel</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="about_img">
-                     <figure><img src="/images/user/about_img.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+
       <!-- end about -->
       <!-- testimonial -->
-      <div class="testimonial">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Testimonial</h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">
-                  <div id="myCarousel2" class="carousel slide testimonial_Carousel " data-ride="carousel">
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container">
-                              <div class="carousel-caption ">
-                                 <div class="row">
-                                    <div class="col-md-6 margin_boot">
-                                       <div class="test_box">
-                                          <h4>Mark jonson</h4>
-                                          <i><img src="/images/user/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="test_box">
-                                          <h4>Mac Du</h4>
-                                          <i><img src="/images/user/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption">
-                                 <div class="row">
-                                    <div class="col-md-6 margin_boot">
-                                       <div class="test_box">
-                                          <h4>Mark jonson</h4>
-                                          <i><img src="/images/user/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="test_box">
-                                          <h4>Mac Du</h4>
-                                          <i><img src="/images/user/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption">
-                                 <div class="row">
-                                    <div class="col-md-6 margin_boot">
-                                       <div class="test_box">
-                                          <h4>Mark jonson</h4>
-                                          <i><img src="/images/user/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="test_box">
-                                          <h4>Mac Du</h4>
-                                          <i><img src="/images/user/te1.png" alt="#"/></i>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Previous</span>
-                     </a>
-                     <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Next</span>
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
       <!-- end testimonial -->
       <!--  footer -->
       <footer th:replace="~{users/footer :: #footer}">
@@ -341,6 +236,9 @@
       <!-- Javascript files-->
 
     <div th:replace="~{users/js-src :: #mainJs}"></div>
+   <div>
+      <script src="/js/user/index.js"></script>
+   </div>
    </body>
 </html>
 

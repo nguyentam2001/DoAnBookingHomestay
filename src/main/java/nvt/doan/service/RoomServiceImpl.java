@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -66,5 +67,11 @@ public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements Ro
     @Override
     public Collection<Room> getRoomByHomestayId(Integer homestayId) {
         return  roomRepository.findAllByHomestayId(homestayId);
+    }
+
+    @Override
+    public Collection<Room> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId) {
+
+        return roomRepository.findAllRoomAvailableByHomestayId(checkIn,checkOut,numberPersons,address,homestayId);
     }
 }

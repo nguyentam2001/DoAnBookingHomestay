@@ -72,47 +72,44 @@
                   </div>
                </div>
                <div class="row mb-4">
+<!--                  <div class="col-md-6">-->
+<!--                     <div class="t-title">Theo xếp hạng</div>-->
+<!--                     <div class="form-group">-->
+<!--                        <select class="book_n" name="rate" id="rate">-->
+<!--                           <th:block th:each="ele:${address}">-->
+<!--                              <option th:value="${ele.addressId}"-->
+<!--                                      th:text="${ele.addressName}"-->
+<!--                                      th:selected="${ele.addressId==selectedAddress.addressId}">-->
+<!--                              </option>-->
+<!--                           </th:block>-->
+<!--                        </select>-->
+<!--                     </div>-->
+<!--                  </div>-->
                   <div class="col-md-6">
-                     <div class="t-title">Theo xếp hạng</div>
-                     <div class="form-group">
-                        <select class="book_n" name="rate" id="rate">
-                           <th:block th:each="ele:${address}">
-                              <option th:value="${ele.addressId}"
-                                      th:text="${ele.addressName}"
-                                      th:selected="${ele.addressId==selectedAddress.addressId}">
-                              </option>
-                           </th:block>
-                        </select>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-
                   </div>
                </div>
-
                <div th:each="ele:${homestayClientDTOList}">
                   <div class="row">
                      <div class="col-md-12">
-                        <div class="card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
-                           <div class="row">
-                              <div class="col-sm-4">
-                                 <img class="d-block w-100 h-100" src="https://picsum.photos/150?image=641" alt="">
-                              </div>
-                              <div class="col-sm-8">
-                                 <div class="card-block">
-                                    <!--           <h4 class="card-title">Small card</h4> -->
-                                    <p th:text="${ele.homestayName}"></p>
-                                    <p th:text="${ele.description}"></p>
-                                    <p>Hiện tại đang có: <span th:text="${ele.roomAvailable}"></span> căn hộ trống</p>
-                                    <p>Giá giao động mỗi căn hộ/đêm từ: <span th:text="${ele.roomAvailable}"></span> đến <span th:text="${ele.roomAvailable}"></span> VND</p>
-                                    <br>
-                                    <a href="#" class="btn btn-primary btn-sm float-right">Read More</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+                          <div class="t-cursor-pointer card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
+                             <div class="row">
+                                <div class="col-sm-4">
+                                   <img class="d-block w-100 h-100" src="https://picsum.photos/150?image=641" alt="">
+                                </div>
+                                <div class="col-sm-8">
+                                   <div class="card-block">
+                                      <!--           <h4 class="card-title">Small card</h4> -->
+                                      <p th:text="${ele.homestayName}"></p>
+                                      <p th:text="${ele.description}"></p>
+                                      <p>Hiện tại đang có: <span th:text="${ele.roomAvailable}"></span> căn hộ trống</p>
+                                      <p>Giá giao động mỗi căn hộ/đêm từ: <span th:text="${ele.roomAvailable}"></span> đến <span th:text="${ele.roomAvailable}"></span> VND</p>
+                                      <br>
+                                      <a th:href="@{/view/users/search/rooms(address=${selectedAddress.addressId},checkIn=${checkIn},checkOut=${checkOut},numberPersons=${numberPersons},homestayId=${ele.homestayId})}" class="btn btn-primary btn-sm float-right">Read More</a>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
                      </div>
-                  </div>
                </div>
             </div>
          </div>

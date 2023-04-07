@@ -13,5 +13,7 @@ import java.util.List;
 
 @Repository
 public interface HomestayRepository extends JpaRepository<Homestay,Integer>, CustomHomestayRepository {
+
+
     List<HomestayClientDTO> getHomestaysAndRoomAvailable(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address);
 }

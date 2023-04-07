@@ -30,4 +30,7 @@ public class Homestay {
     @OneToMany(mappedBy ="homestay",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Room> rooms;
+    @OneToMany(mappedBy ="homestay",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Promotion> promotions;
 }

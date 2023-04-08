@@ -12,5 +12,4 @@ function findAddress(event){
         let checkOut= $("[name='checkOut']").val();
         let numberPersons=$("[name='numberPersons']").val();
         window.location.href = `/view/users/search?address=${address}&checkIn=${checkIn}&checkOut=${checkOut}&numberPersons=${numberPersons}`
-
 }

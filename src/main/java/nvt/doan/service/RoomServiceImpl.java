@@ -3,12 +3,15 @@ package nvt.doan.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nvt.doan.dto.RoomDTO;
+import nvt.doan.dto.RoomResponse;
 import nvt.doan.entities.FileData;
 import nvt.doan.entities.Homestay;
 import nvt.doan.entities.Room;
 import nvt.doan.repository.HomestayRepository;
 import nvt.doan.repository.RoomRepository;
 import nvt.doan.utils.Constant;
+import nvt.doan.utils.DateUtil;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,10 +22,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 @Service("roomServiceImpl")
 public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements RoomService {
@@ -71,7 +72,51 @@ public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements Ro
 
     @Override
     public Collection<Room> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId) {
-
-        return roomRepository.findAllRoomAvailableByHomestayId(checkIn,checkOut,numberPersons,address,homestayId);
+//        long totalDate = (ChronoUnit.DAYS.between(checkIn, checkOut));
+//        Collection<Room> rooms= roomRepository.findAllRoomAvailableByHomestayId(checkIn,checkOut,address,numberPersons,homestayId);
+//        ModelMapper modelMapper = new ModelMapper();
+//        List<RoomResponse> roomResponses = new ArrayList<>();
+//        for (Room room : rooms){
+//            RoomResponse newRoom = modelMapper.map(room,RoomResponse.class);
+//            newRoom.setTotalPrice((long) (room.getPrice()*totalDate));
+//            roomResponses.add(newRoom);
+//        }
+        return roomRepository.findAllRoomAvailableByHomestayId(checkIn,checkOut,address,numberPersons,homestayId);
     }
+
+    @Override
+    public Collection<RoomResponse> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId, String Sort) {
+        List<Room> rooms = (List<Room>) roomRepository.findAllRoomAvailableByHomestayId(checkIn,checkOut,address,numberPersons,homestayId);
+        List<RoomResponse> roomResponses = new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
+        rooms.forEach(room -> {
+            Double roomRate= getRoomRate(room.getRoomId());
+            RoomResponse newRoom = modelMapper.map(room,RoomResponse.class);
+            newRoom.setRatePoint(roomRate==null?0:roomRate);
+            roomResponses.add(newRoom);
+        });
+        switch(Sort) {
+            case "asc":
+                Collections.sort(roomResponses, Comparator.comparingDouble(RoomResponse::getPrice));
+                break;
+            case "desc":
+                Collections.sort(roomResponses, Comparator.comparingDouble(RoomResponse::getPrice).reversed());
+                break;
+            case "ascRate":
+                Collections.sort(roomResponses, Comparator.comparingDouble(RoomResponse::getRatePoint));
+                break;
+            default:
+                Collections.sort(roomResponses, Comparator.comparingDouble(RoomResponse::getRatePoint).reversed());
+                break;
+        }
+        return roomResponses;
+    }
+
+
+
+    @Override
+    public Double getRoomRate(Integer roomId) {
+        return roomRepository.getAVGroomRate(roomId);
+    }
+
 }

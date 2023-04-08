@@ -3,8 +3,10 @@ package nvt.doan.service;
 import nvt.doan.dto.HomestayClientDTO;
 import nvt.doan.entities.Address;
 import nvt.doan.entities.Homestay;
+import nvt.doan.entities.Promotion;
 import nvt.doan.repository.AddressRepository;
 import nvt.doan.repository.HomestayRepository;
+import nvt.doan.repository.PromotionRepository;
 import nvt.doan.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +24,9 @@ public class HomestayServiceImpl extends BaseServiceImpl<Homestay,Integer> imple
     @Autowired
     AddressRepository addressRepository;
 
+    @Autowired
+    PromotionRepository promotionRepository;
+
     @Override
     public Homestay getHomestayById(int homestayId) {
         Optional<Homestay> homestay = homestayRepository.findById(homestayId);
@@ -29,7 +34,12 @@ public class HomestayServiceImpl extends BaseServiceImpl<Homestay,Integer> imple
     }
     @Override
     public List<HomestayClientDTO> getHomestays(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address) {
-        return homestayRepository.getHomestaysAndRoomAvailable(checkIn, checkOut, numberPersons,address);
+        List<HomestayClientDTO> result = homestayRepository.getHomestaysAndRoomAvailable(checkIn, checkOut, numberPersons,address);
+        result.forEach(homestayClientDTO -> {
+            List<Promotion> promotionList = promotionRepository.findAllPromotionByHomestayId(homestayClientDTO.getHomestayId());
+            homestayClientDTO.setPromotionList(promotionList);
+        });
+        return result;
     }
 
     @Override

@@ -33,5 +33,8 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "room_id")
     @JsonIgnore
-    private Homestay room;
+    private Room room;
+
+    @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL)
+    private RoomRate roomRate;
 }

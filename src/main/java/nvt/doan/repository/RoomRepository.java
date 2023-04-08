@@ -32,4 +32,9 @@ public interface RoomRepository  extends JpaRepository<Room,Integer> {
             ")\n" +
             "AND r.number_of_person >= ?4",nativeQuery = true)
     Collection<Room> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String address,String numberPersons, String homestayId);
+
+    @Query(value = "select avg(rr.rate_points)\n" +
+            "from room r join booking b on r.room_id=b.room_id join room_rate rr on rr.booking_id= b.request_id\n" +
+            "where r.room_id=?1 group by (r.room_id);",nativeQuery = true)
+    Double getAVGroomRate(Integer roomId);
 }

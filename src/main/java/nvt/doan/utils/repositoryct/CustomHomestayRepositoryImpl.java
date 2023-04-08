@@ -9,6 +9,7 @@ import org.hibernate.transform.ResultTransformer;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomHomestayRepositoryImpl implements CustomHomestayRepository{
@@ -37,7 +38,7 @@ public class CustomHomestayRepositoryImpl implements CustomHomestayRepository{
                                 ((Number) objects[0]).intValue(),
                                 (objects[1].toString()),
                                 (objects[2].toString()),
-                                ((Number) objects[3]).intValue());
+                                ((Number) objects[3]).intValue(),new ArrayList<>());
                     }
                     @Override
                     public List transformList(List list) {

@@ -35,20 +35,28 @@
                   <form class="form_book mt-0 ml-0 pl-0 pt-0">
                      <div class="row">
                         <div class="col-md-12">
-                           <label class="date">Địa điểm</label>
-                           <input class="book_n" type="date">
+                           <label class="date">Địa chỉ</label>
+                           <select class="book_n" name="address" id="address">
+                              <th:block th:each="ele:${address}">
+                                 <option th:value="${ele.addressId}"
+                                         th:text="${ele.addressName}"
+                                         th:selected="${ele.addressId==selectedAddress.addressId}">
+                                 </option>
+                              </th:block>
+                           </select>
                         </div>
                         <div class="col-md-12">
                            <label class="date">Ngày nhận phòng</label>
-                           <input class="book_n" type="date">
+                           <input class="book_n" type="hidden" name="homestayId" th:value="${homestay.homestayId}" >
+                           <input class="book_n" type="date" name="checkIn" th:value="${checkIn}" >
                         </div>
                         <div class="col-md-12">
                            <label class="date">Ngày trả phòng</label>
-                           <input class="book_n" type="date">
+                           <input class="book_n" type="date" name="checkOut" th:value="${checkOut}" >
                         </div>
                         <div class="col-md-12">
                            <label class="date">Số lượng khách</label>
-                           <input class="book_n" placeholder="2" type="type" name="2">
+                           <input class="book_n" placeholder="2" type="type" name="numberPersons" th:value="${numberPersons}">
                         </div>
                         <div class="col-md-12">
                            <button class="book_btn mw-100 t-btn-book">Tìm kiếm</button>
@@ -60,84 +68,65 @@
             <div class="col-md-8 ">
                <div class="row mb-2">
                   <div class="col-md-12 mb-4">
-                     <h4 class="label label-default mb-0 t-title">Tìm thấy <span>166</span> Homestay</h4>
+                     <h4 class="label label-default mb-0">Tìm thấy <span th:text="${numberOfRoom}"></span> căn hộ trống của Homestay <span th:text="${homestay.homestayName}"></span></label></h4>
                   </div>
                </div>
                <div class="row mb-4">
                   <div class="col-md-6">
-                     <div class="t-title">Theo giá</div>
                      <div class="form-group">
-                        <div class="nice-select t-select-options" tabindex="0"><span class="current">1</span>
-                           <ul class="list">
-                              <li class="option selected focus" data-value="1">1</li>
-                              <li class="option " data-value="2">2</li>
-                              <li class="option " data-value="3">3</li>
-                              <li class="option " data-value="4">4</li>
-                              <li class="option " data-value="5">5</li>
-                           </ul>
-                        </div>
+                        <label class="t-title">Theo các tiêu chí</label>
+                        <select class="form-control book_n" id="selectSort" name="selectSort">
+                           <th:block th:each="ele:${priorityList}">
+                              <option th:value="${ele.value}"
+                                      th:text="${ele.name}"
+                                      th:selected="${ele.value==sort}">
+                              </option>
+                           </th:block>
+                        </select>
                      </div>
                   </div>
                   <div class="col-md-6">
-                     <div class="t-title">Theo xếp hạng</div>
                      <div class="form-group">
-                        <div class="nice-select t-select-options" tabindex="0"><span class="current">1</span>
-                           <ul class="list">
-                              <li class="option selected focus" data-value="1">1</li>
-                              <li class="option " data-value="2">2</li>
-                              <li class="option " data-value="3">3</li>
-                              <li class="option " data-value="4">4</li>
-                              <li class="option " data-value="5">5</li>
-                           </ul>
-                        </div>
+                        <label class="t-title">Theo xếp hạng</label>
+                        <select  class="form-control book_n" id="selectRate" name="selectRate">
+                           <option value="high" selected>Từ cao đến thấp</option>
+                           <option value="low">Từ thấp đến cao</option>
+                        </select>
                      </div>
                   </div>
                </div>
-               <div class="row">
-                  <div class="col-lg-6 item mb-4">
-                     <a class="lightbox"
-                        href="http://www.politicalmetaphors.com/wp-content/uploads/2015/04/blog-shapes-square-windows.jpg">
-                        <img class="img-fluid image scale-on-hover"
-                           src="https://res.cloudinary.com/dpnaptcei/image/upload/v1537070505/Gallery/image1.jpg">
-                     </a>
-                  </div>
-                  <div class="col-lg-6 item mb-4">
-                     <a class="lightbox"
-                        href="https://res.cloudinary.com/dpnaptcei/image/upload/v1537070507/Gallery/image2.jpg">
-                        <img class="img-fluid image scale-on-hover"
-                           src="https://res.cloudinary.com/dpnaptcei/image/upload/v1537070507/Gallery/image2.jpg">
-                     </a>
-                  </div>
-                  <div class="col-lg-6 item mb-4">
-                     <a class="lightbox"
-                        href="https://res.cloudinary.com/dpnaptcei/image/upload/v1537070506/Gallery/image3.jpg">
-                        <img class="img-fluid image scale-on-hover"
-                           src="https://res.cloudinary.com/dpnaptcei/image/upload/v1537070506/Gallery/image3.jpg">
-                     </a>
-                  </div>
-                  <div class="col-lg-6 item mb-4">
-                     <a class="lightbox"
-                        href="https://res.cloudinary.com/dpnaptcei/image/upload/v1537070505/Gallery/image4.jpg">
-                        <img class="img-fluid image scale-on-hover"
-                           src="https://res.cloudinary.com/dpnaptcei/image/upload/v1537070505/Gallery/image4.jpg">
-                     </a>
-                  </div>
+               <div th:each="ele:${roomList}">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
+                           <div class="row">
+                              <div class="col-sm-5">
+                                 <img class="d-block w-100" src="https://picsum.photos/150?image=641" alt="">
+                              </div>
+                              <div class="col-sm-7">
+                                 <div class="card-block">
+                                    <!--           <h4 class="card-title">Small card</h4> -->
+                                    <div class="row">
+                                          <div class="col-8">
+                                             <p class="t-header-card" th:text="${ele.roomName}"></p>
+                                             <p class="t-header-card-text-red"><span th:text="${ele.bedNumbers}"></span> Phòng ngủ </p>
+                                             <p class="t-card-text mb-0">Diện tích: <span th:text="${ele.area}"></span>m<sup>2</sup></p>
+                                             <p class="t-card-text mb-0">Mô tả: <span th:text="${ele.roomDescription}"></span></p>
+                                             <p class="t-header-card mb-1">Loại phòng: <span th:text="${ele.roomType==1?'Cao cấp':'Thường'}"></span></p>
+                                             <p class="t-card-text mb-0">Số khách có thể lưu trú: <span th:text="${ele.numberOfPerson}"></span> khách</p>
+                                             <p class="t-header-card-text-red"><span th:text="${ele.price}"></span> VND/đêm</p>
+                                          </div>
+                                          <div class="col-4">
+                                                <p class="t-header-card-text-red mb-1 float-right"><span class="t-header-card-text-red" th:text="${ele.ratePoint==0?'Chưa có đánh giá':ele.ratePoint+'/5sao'}"></span></p>
+                                                <p class="t-header-card-text-red mb-1 float-right"><span th:text="${totalDate}"></span> đêm, <span th:text="${numberPersons}"></span> khách</p>
+                                                <p class="t-header-card mb-0 float-right"><span  th:text="${ele.price * totalDate} "></span> <span class="t-header-card-text-red">vnd</span></p>
+                                                <p class="t-header-card-text-red mb-0 float-right">Bao gồm thuế, phí</p>
+                                          </div>
+                                    </div>
 
-               </div>
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
-                        <div class="row">
-                           <div class="col-sm-5">
-                              <img class="d-block w-100" src="https://picsum.photos/150?image=641" alt="">
-                           </div>
-                           <div class="col-sm-7">
-                              <div class="card-block">
-                                 <!--           <h4 class="card-title">Small card</h4> -->
-                                 <p>Copy paste the HTML and CSS.</p>
-                                 <p>Change around the content for awsomenes</p>
-                                 <br>
-                                 <a href="#" class="btn btn-primary btn-sm float-right">Read More</a>
+                                    <br>
+                                    <a href="#" class="btn btn-primary btn-sm float-right">Đặt ngay</a>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -149,110 +138,14 @@
 
       </div>
    </div>
-
-   <!-- end testimonial -->
-   <div class="container">
-      <div class="row">
-         <div class="t-boder mb-2"></div>
-      </div>
-   </div>
-   <div class="container">
-      <div class="row">
-         <div class="t-title">Phòng trống</div>
-      </div>
-   </div>
-   <div class="container mb-4">
-      <div class="row">
-
-         <form class="form_book mt-0 pl-0">
-            <div class="row">
-               <div class="col-md-3">
-                  <label class="date">ARRIVAL DATE</label>
-                  <input class="book_n" type="date">
-               </div>
-               <div class="col-md-3">
-                  <label class="date">DEPARTURE DATE</label>
-                  <input class="book_n" type="date">
-               </div>
-               <div class="col-md-3">
-                  <label class="date">PERSON</label>
-                  <input class="book_n" placeholder="2" type="type" name="2">
-               </div>
-               <div class="col-md-3">
-                  <button class="book_btn t-btn-book">Book Now</button>
-               </div>
-            </div>
-         </form>
-
-      </div>
-   </div>
-   <div class="container">
-      <div class="row">
-
-         <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
-               <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-               </tr>
-               <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-               </tr>
-               <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-               </tr>
-               <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-               </tr>
-               <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-               </tr>
-            </tbody>
-         </table>
-
-      </div>
-   </div>
-   <!--  footer -->
-   <footer id="contact">
-      <div class="footer t-bg-cc-color mt-0">
-         <div class="copyright t-bg-cc-color mt-0">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12">
-                     <p class="mb-0">Copyright 2019 All Right Reserved By <a href="https://html.design/"> Free Html
-                           Templates</a></p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </footer>
    <!-- end footer -->
    <!-- Javascript files-->
    <footer th:replace="~{users/footer :: #footer}">
    </footer>
+   <div th:replace="~{users/js-src :: #mainJs}"></div>
+   <div>
+      <script src="/js/user/list-apartment.js"></script>
+   </div>
 </body>
 
 </html>

@@ -7,12 +7,14 @@ import lombok.Getter;
 import lombok.Setter;
 import nvt.doan.entities.Address;
 import nvt.doan.entities.HomestayRate;
+import nvt.doan.entities.Promotion;
 import nvt.doan.entities.Room;
 
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,4 +26,5 @@ public class HomestayClientDTO {
     private String homestayName;
     private  String description;
     private  Integer roomAvailable;
+    private List<Promotion> promotionList;
 }

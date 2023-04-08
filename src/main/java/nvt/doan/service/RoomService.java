@@ -1,5 +1,6 @@
 package nvt.doan.service;
 
+import nvt.doan.dto.RoomResponse;
 import nvt.doan.entities.Room;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,4 +15,6 @@ public interface RoomService extends BaseService<Room,Integer>{
 
     Collection<Room> getRoomByHomestayId(Integer homestayId);
     Collection<Room> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId);
+    Collection<RoomResponse> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId, String priceSort);
+    Double getRoomRate(Integer roomId);
 }

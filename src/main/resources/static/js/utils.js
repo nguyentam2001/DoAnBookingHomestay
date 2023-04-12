@@ -29,3 +29,7 @@ class PromotionURL{
      static ROOT="/api/v1/promotion/"
 }
 
+class FavouritesURL{
+    static ROOT="/api/v1/users/favourites/"
+}
+

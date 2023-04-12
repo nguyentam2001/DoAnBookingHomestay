@@ -1,0 +1,109 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{users/head :: #head}">
+</head>
+<!-- body -->
+<body class="main-layout">
+<!-- loader  -->
+<!-- <div class="loader_bg">
+   <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+</div> -->
+<!-- end loader -->
+<!-- header -->
+<header th:replace="~{users/navigation :: #userHeader}"></header>
+<!--      <header th:replace="~{users/navigation}::#userHeader">-->
+
+<!-- end header inner -->
+<!-- end header -->
+<!-- banner -->
+<div th:replace="~{users/navigation::#userCarousel}"></div>
+<!-- end banner -->
+<!-- form_lebal -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="t-form_book" method="get" action="/view/users/search">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="date t-title">Ngày nhận</label>
+                            <input class="book_n" name="checkIn" placeholder="Ngày nhận" type="date" th:value="${checkIn}"  >
+                        </div>
+                        <div class="col-md-3">
+                            <label class="date t-title">Ngày trả</label>
+                            <input class="book_n" name="checkOut" placeholder="Ngày trả" type="date" th:value="${checkOut}"  >
+                        </div>
+                        <div class="col-md-2">
+                            <label class="date t-title">Số khách</label>
+                            <input class="book_n" placeholder="Số khách" type="number" name="numberPersons" th:value="${numberPersons}">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="book_btn w-75 t-m-top-bottom-46">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="t-title-page mt-2 mb-2">Căn hộ yêu thích của quý khách</p>
+        </div>
+    </div>
+</div>
+<!-- choose  section -->
+<div class="choose mt-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 " th:each="ele:${roomFavoriteList}">
+                <div class="row">
+                    <div class="card t-card-hover mt-0  pl-2 pr-2 pt-2 pb-2 rounded position-relative" >
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <img class="d-block w-100" src="https://picsum.photos/150?image=641" alt="">
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="card-block">
+                                    <!-- <h4 class="card-title">Small card</h4> -->
+                                    <p class="t-header-card mb-0" th:text="${ele.roomName}"></p>
+                                    <p class="t-card-text mb-0" th:text="${ele.homestay.homestayName}"></p>
+                                    <p class="t-card-text mb-0" th:text="${ele.homestay.address.addressName}"></p>
+                                    <p class="t-header-card-text-red mb-1 float-right"><span class="t-header-card-text-red" th:text="${ele.ratePoint==0?'Chưa có đánh giá':ele.ratePoint+'/5sao'}"></span></p>
+                                    <p class="t-header-card mb-0 "><span  th:text="${#numbers.formatDecimal(ele.price,0,'COMMA',0,'POINT')} "></span> <span class="t-header-card-text-red">vnd/đêm</span></p>
+                                    <p class="t-header-card-text-red mb-0 ">Bao gồm thuế, phí</p>
+
+                                    <div class=" position-absolute top-0 start-0 t-cursor-pointer" th:onclick="'deleteRoomFavourite(' + ${ele.roomId} + ')'"><i class="t-header-card-text-red fa-sharp fa-solid fa-trash"></i></div>
+                                    <a href="#" class="btn btn-primary btn-sm float-right">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end our  section -->
+<!-- about -->
+
+<!-- end about -->
+<!-- testimonial -->
+<!-- end testimonial -->
+<!--  footer -->
+<footer th:replace="~{users/footer :: #footer}">
+</footer>
+<!-- end footer -->
+<!-- Javascript files-->
+
+<div th:replace="~{users/js-src :: #mainJs}"></div>
+<div>
+
+    <script src="/js/user/list-favourite.js"></script>
+</div>
+</body>
+</html>
+

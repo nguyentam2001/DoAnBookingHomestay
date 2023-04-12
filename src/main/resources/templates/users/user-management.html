@@ -1,0 +1,140 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{users/head :: #head}">
+
+</head>
+<!-- body -->
+<body class="main-layout">
+<!-- loader  -->
+<!-- <div class="loader_bg">
+   <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+</div> -->
+<!-- end loader -->
+<!-- header -->
+<header th:replace="~{users/navigation :: #userHeader}"></header>
+<!--      <header th:replace="~{users/navigation}::#userHeader">-->
+
+<!-- end header inner -->
+<!-- end header -->
+<!-- banner -->
+<div th:replace="~{users/navigation::#userCarousel}"></div>
+<!-- end banner -->
+<!-- form_lebal -->
+<div class="container ">
+    <div class="row ">
+        <div class="col-md-12  border mb-4 ml-2 mr-2">
+            <div class="row">
+                <div class="col-md-12 border-bottom">
+                    <p class="SbCTde">Hồ sơ của tôi</p>
+                    <p class="t-title-management">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="w-100 mt-4">
+                        <tr>
+                            <td class="t-text-table-opacity ">
+                                Tên đăng nhập
+                            </td>
+                            <td class="t-text-table" th:text="${user.username}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="t-text-table-opacity">
+                                Tên
+                            </td>
+                            <td class="t-text-table">
+                                <input type="text" th:value="${user.fullName}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="t-text-table-opacity">
+                                Email
+                            </td>
+                            <td class="t-text-table"  th:text="${user.email}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="t-text-table-opacity">
+                                Số điện thoại
+                            </td>
+                            <td class="t-text-table" th:text="${user.phone}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="t-text-table-opacity">
+                                Giới tính
+                            </td>
+                            <td class="t-text-table">
+                                <select class="form-control" th:value="${user.gender}" >
+                                    <option value="male">Nam</option>
+                                    <option value="female">Nữ</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="t-text-table-opacity">
+                                Địa chỉ
+                            </td>
+                            <td class="t-text-table">
+                                <input type="text" th:value="${user.address}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td class="t-text-table">
+                                <button type="button" class="btn btn-danger">Lưu</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 border-left">
+                    <div class="container">
+
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                </div>
+                            </div>
+                        </div>
+                        <div >
+                            <p class="t-title-management text-center">Ảnh hồ sơ</p>
+                            <p class="text-center">.png, .jpg, .jpeg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- end our  section -->
+<!-- about -->
+
+<!-- end about -->
+<!-- testimonial -->
+<!-- end testimonial -->
+<!--  footer -->
+<footer th:replace="~{users/footer :: #footer}">
+</footer>
+<!-- end footer -->
+<!-- Javascript files-->
+
+<div th:replace="~{users/js-src :: #mainJs}"></div>
+<div>
+
+    <script src="/js/user/list-favourite.js"></script>
+    <script src="/js/user/image-one.js"></script>
+</div>
+</body>
+</html>
+

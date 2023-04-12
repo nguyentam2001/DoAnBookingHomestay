@@ -155,6 +155,10 @@ body {
        font-size: 12px;
        color: red;
 }
+
+.t-icon-red{
+       color: red;
+}
 .t-card-text{
 font-size: 16px;
     opacity: 0.8;
@@ -183,5 +187,67 @@ background-image: none !important;
     font-size:20px;
     color: #007bff;
 }
+
+.t-image-cover{
+    object-fit: cover;
+}
+
+.t-image-cover-card{
+    width: 278px !important;
+    height: 220px !important;
+    object-fit: cover;
+}
+
+.t-total-price{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+    .t-color-price{
+    color: red;
+     font-size: 18px;
+}
+
+/* user-management */
+
+.SbCTde {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  font-weight:  bold;
+  line-height: 1.5rem;
+  text-transform: capitalize;
+  color: #333;
+}
+.t-text-table-opacity{
+  font-weight:  bold;
+  text-align: right;
+  color: rgba(85,85,85,.8);
+  overflow: hidden;
+  padding-bottom: 30px;
+  padding-right: 30px;
+  white-space: nowrap;
+  min-width: 20%;
+}
+
+.t-title-management{
+  margin-top: 0;
+  font-weight: bold;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.t-text-table {
+  font-weight:  bold;
+  padding-bottom: 30px;
+  font-size: .875rem;
+  color: #333;
+}
+
+
+
+
+
+
 
 

@@ -3,7 +3,6 @@
 <head th:replace="~{users/head :: #head}">
 </head>
 <!-- body -->
-
 <body class="main-layout">
    <!-- loader  -->
    <!-- <div class="loader_bg">
@@ -12,8 +11,6 @@
    <!-- end loader -->
    <!-- header -->
    <header th:replace="~{users/navigation :: #userHeader}"></header>
-   <!--      <header th:replace="~{users/navigation}::#userHeader">-->
-
    <!-- end header inner -->
    <!-- end header -->
    <!-- banner -->
@@ -22,7 +19,6 @@
    <!-- form_lebal -->
    <section>
       <div class="container">
-
       </div>
    </section>
    <!-- end form_lebal -->
@@ -87,11 +83,6 @@
                   </div>
                   <div class="col-md-6">
                      <div class="form-group">
-                        <label class="t-title">Theo xếp hạng</label>
-                        <select  class="form-control book_n" id="selectRate" name="selectRate">
-                           <option value="high" selected>Từ cao đến thấp</option>
-                           <option value="low">Từ thấp đến cao</option>
-                        </select>
                      </div>
                   </div>
                </div>
@@ -101,7 +92,7 @@
                         <div class="card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
                            <div class="row">
                               <div class="col-sm-5">
-                                 <img class="d-block w-100" src="https://picsum.photos/150?image=641" alt="">
+                                 <img class="d-block t-image-cover-card" src="https://picsum.photos/150?image=641" alt="">
                               </div>
                               <div class="col-sm-7">
                                  <div class="card-block">
@@ -114,18 +105,18 @@
                                              <p class="t-card-text mb-0">Mô tả: <span th:text="${ele.roomDescription}"></span></p>
                                              <p class="t-header-card mb-1">Loại phòng: <span th:text="${ele.roomType==1?'Cao cấp':'Thường'}"></span></p>
                                              <p class="t-card-text mb-0">Số khách có thể lưu trú: <span th:text="${ele.numberOfPerson}"></span> khách</p>
-                                             <p class="t-header-card-text-red"><span th:text="${ele.price}"></span> VND/đêm</p>
+                                             <p class="t-header-card-text-red"><span th:text="${#numbers.formatDecimal(ele.price,0,'COMMA',0,'POINT')}"></span> VND/đêm</p>
                                           </div>
                                           <div class="col-4">
-                                                <p class="t-header-card-text-red mb-1 float-right"><span class="t-header-card-text-red" th:text="${ele.ratePoint==0?'Chưa có đánh giá':ele.ratePoint+'/5sao'}"></span></p>
+                                                <p class="text-right" th:onclick="'addRoomFavourite(' + ${ele.roomId} + ')'"><i class="fa-regular fa-heart t-cursor-pointer t-icon-red"></i></p>
+<!--                                                <p><form method="post" action="/view/users/favourites" ><input type="hidden" name="roomId" th:value="${ele.roomId}" /> <button><i class="fa-regular fa-heart t-cursor-pointer t-icon-red"></i></button> </form> </p>-->
+                                                <p class="t-header-card-text-red mb-1 float-right"><span class="t-header-card-text-red float-right" th:text="${ele.ratePoint==0?'Chưa có đánh giá':ele.ratePoint+'/5sao'}"></span></p>
                                                 <p class="t-header-card-text-red mb-1 float-right"><span th:text="${totalDate}"></span> đêm, <span th:text="${numberPersons}"></span> khách</p>
-                                                <p class="t-header-card mb-0 float-right"><span  th:text="${ele.price * totalDate} "></span> <span class="t-header-card-text-red">vnd</span></p>
+                                                <p class="t-header-card mb-0 float-right"><span  th:text="${#numbers.formatDecimal(ele.price * totalDate,0,'COMMA',0,'POINT')} "></span> <span class="t-header-card-text-red">vnd</span></p>
                                                 <p class="t-header-card-text-red mb-0 float-right">Bao gồm thuế, phí</p>
-                                          </div>
-                                    </div>
-
-                                    <br>
-                                    <a href="#" class="btn btn-primary btn-sm float-right">Đặt ngay</a>
+                                             <br>
+                                             <button th:onclick="'detailRoomPrice(' + ${ele.roomId} + ')'" class="btn btn-primary btn-sm  float-right">Đặt ngay</button>
+                                       </div>
                                  </div>
                               </div>
                            </div>
@@ -145,6 +136,7 @@
    <div th:replace="~{users/js-src :: #mainJs}"></div>
    <div>
       <script src="/js/user/list-apartment.js"></script>
+   </div>
    </div>
 </body>
 

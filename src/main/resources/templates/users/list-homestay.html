@@ -102,17 +102,13 @@
                                       <p class="t-header-card" th:text="${ele.homestayName}"></p>
                                       <p class="t-header-card-text-red" th:text="${ele.description}"></p>
                                       <p class="t-card-text mb-0" >Hiện tại đang có: <span th:text="${ele.roomAvailable}"></span> căn hộ trống</p>
-                                      <p class="t-header-card mb-1">Giá giao động mỗi căn hộ/đêm từ: <span th:text="${ele.roomAvailable}"></span> đến <span th:text="${ele.roomAvailable}"></span> VND</p>
+                                      <p class="t-header-card mb-1">Giá giao động mỗi căn hộ/đêm từ: <span th:text="${#numbers.formatDecimal( ele.minRoomPrice,0,'COMMA',0,'POINT')}"></span> đến <span th:text="${#numbers.formatDecimal(ele.maxRoomPrice,0,'COMMA',0,'POINT')}"></span> VND</p>
                                       <div class="ml-0 container ">
                                          <div class="row ">
                                             <div class="col-md-12 pl-0">
                                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                                   <div class="carousel-inner">
-                                                     <div  class="carousel-item active">
-                                                        <p class="mb-0 t-title-carousel active">Mã giảm giá mùa hè</p>
-                                                        <p class="mb-0 t-title-detail">Giảm <span  class="t-promotion-price">30</span><span class="t-promotion-price">%</span> khi đặt phòng từ 2022-04-04 đến 2022-04-08</p>
-                                                     </div>
-                                                     <div th:each="prom : ${ele.promotionList}" class="carousel-item">
+                                                     <div th:each="prom, iterStat : ${ele.promotionList}" class="carousel-item" th:classappend="${iterStat.index == 0} ? ' active'">
                                                         <p th:text="${prom.promotionName}" class="mb-0 t-title-carousel"></p>
                                                         <p class="mb-0 t-title-detail">Giảm <span th:text="${prom.percentDiscount}" class="t-promotion-price"></span><span class="t-promotion-price">%</span> khi đặt phòng từ <span th:text="${prom.startDate}"></span> đến <span th:text="${prom.endDate}"></span></p>
                                                      </div>

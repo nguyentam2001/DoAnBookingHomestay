@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nvt.doan.dto.RoomDTO;
 import nvt.doan.dto.RoomResponse;
+import nvt.doan.entities.Address;
 import nvt.doan.entities.FileData;
 import nvt.doan.entities.Homestay;
 import nvt.doan.entities.Room;
+import nvt.doan.repository.AddressRepository;
 import nvt.doan.repository.HomestayRepository;
 import nvt.doan.repository.RoomRepository;
 import nvt.doan.utils.Constant;
@@ -31,6 +33,7 @@ public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements Ro
     RoomRepository roomRepository;
     @Autowired
     HomestayRepository homestayRepository;
+
 
 
     @Autowired
@@ -84,8 +87,12 @@ public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements Ro
         return roomRepository.findAllRoomAvailableByHomestayId(checkIn,checkOut,address,numberPersons,homestayId);
     }
 
+
+
+
+
     @Override
-    public Collection<RoomResponse> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId, String Sort) {
+        public Collection<RoomResponse> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId, String Sort) {
         List<Room> rooms = (List<Room>) roomRepository.findAllRoomAvailableByHomestayId(checkIn,checkOut,address,numberPersons,homestayId);
         List<RoomResponse> roomResponses = new ArrayList<>();
         ModelMapper modelMapper = new ModelMapper();
@@ -102,7 +109,7 @@ public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements Ro
             case "desc":
                 Collections.sort(roomResponses, Comparator.comparingDouble(RoomResponse::getPrice).reversed());
                 break;
-            case "ascRate":
+            case "descRate":
                 Collections.sort(roomResponses, Comparator.comparingDouble(RoomResponse::getRatePoint));
                 break;
             default:
@@ -117,6 +124,44 @@ public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements Ro
     @Override
     public Double getRoomRate(Integer roomId) {
         return roomRepository.getAVGroomRate(roomId);
+    }
+
+    @Override
+    public List<Room> getRoomListByIds(List<Integer> roomIds) {
+        List<Room> roomList = new ArrayList<>();
+        for (Integer roomId : roomIds) {
+            Room room = getRoomById(roomId);
+            roomList.add(room);
+        }
+        return roomList;
+    }
+
+    @Override
+    public Collection<RoomResponse> findAllRoomFavorites(LocalDate checkIn, LocalDate checkOut, String numberPersons, String email) {
+        List<Room> rooms = (List<Room>) roomRepository.findAllRoomFavorites(checkIn, checkOut, numberPersons,email);
+        List<RoomResponse> roomResponses = new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
+        rooms.forEach(room -> {
+            Double roomRate= getRoomRate(room.getRoomId());
+            RoomResponse newRoom = modelMapper.map(room,RoomResponse.class);
+            newRoom.setRatePoint(roomRate==null?0:roomRate);
+            roomResponses.add(newRoom);
+        });
+        return roomResponses;
+    }
+
+    @Override
+    public Collection<RoomResponse> findAllRoomFavorites(String email) {
+        List<Room> rooms = (List<Room>) roomRepository.findAllRoomFavorites(email);
+        List<RoomResponse> roomResponses = new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
+        rooms.forEach(room -> {
+            Double roomRate= getRoomRate(room.getRoomId());
+            RoomResponse newRoom = modelMapper.map(room,RoomResponse.class);
+            newRoom.setRatePoint(roomRate==null?0:roomRate);
+            roomResponses.add(newRoom);
+        });
+        return roomResponses;
     }
 
 }

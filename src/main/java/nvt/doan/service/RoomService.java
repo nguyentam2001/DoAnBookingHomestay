@@ -17,4 +17,7 @@ public interface RoomService extends BaseService<Room,Integer>{
     Collection<Room> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId);
     Collection<RoomResponse> findAllRoomAvailableByHomestayId(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address, String homestayId, String priceSort);
     Double getRoomRate(Integer roomId);
+    List<Room> getRoomListByIds(List<Integer> roomIds);
+    Collection<RoomResponse> findAllRoomFavorites(LocalDate checkIn, LocalDate checkOut, String numberPersons,String email);
+    Collection<RoomResponse> findAllRoomFavorites(String email);
 }

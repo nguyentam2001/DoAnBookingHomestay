@@ -38,7 +38,10 @@ public class CustomHomestayRepositoryImpl implements CustomHomestayRepository{
                                 ((Number) objects[0]).intValue(),
                                 (objects[1].toString()),
                                 (objects[2].toString()),
-                                ((Number) objects[3]).intValue(),new ArrayList<>());
+                                ((Number) objects[3]).intValue(),new ArrayList<>(),
+                                0.0,
+                                0.0
+                            );
                     }
                     @Override
                     public List transformList(List list) {

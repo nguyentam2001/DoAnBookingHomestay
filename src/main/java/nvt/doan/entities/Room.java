@@ -33,6 +33,4 @@ public class Room {
     @Column(columnDefinition = "DECIMAL(10,2)")
     private double price;
 
-
-
 }

@@ -22,6 +22,14 @@ public class AuthController {
     private MailjetService mailjetService;
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO request, HttpServletResponse httpServletResponse) {
+        // Authenticate the user and generate a token
+        String token = authService.login(request, httpServletResponse);
+        // Add the token to the response header
+        httpServletResponse.addHeader("Authorization", "Bearer " + token);
+        // Redirect to the success page
+        httpServletResponse.setHeader("Location", "/success-page");
+        httpServletResponse.setStatus(302);
+
         return ResponseEntity.ok(authService.login(request, httpServletResponse));
     }
     @GetMapping("/logout-handle")

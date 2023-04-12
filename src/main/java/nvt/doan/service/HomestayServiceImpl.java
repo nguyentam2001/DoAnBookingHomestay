@@ -7,6 +7,7 @@ import nvt.doan.entities.Promotion;
 import nvt.doan.repository.AddressRepository;
 import nvt.doan.repository.HomestayRepository;
 import nvt.doan.repository.PromotionRepository;
+import nvt.doan.repository.RoomRepository;
 import nvt.doan.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,9 @@ public class HomestayServiceImpl extends BaseServiceImpl<Homestay,Integer> imple
     AddressRepository addressRepository;
 
     @Autowired
+    RoomRepository roomRepository;
+
+    @Autowired
     PromotionRepository promotionRepository;
 
     @Override
@@ -38,6 +42,8 @@ public class HomestayServiceImpl extends BaseServiceImpl<Homestay,Integer> imple
         result.forEach(homestayClientDTO -> {
             List<Promotion> promotionList = promotionRepository.findAllPromotionByHomestayId(homestayClientDTO.getHomestayId());
             homestayClientDTO.setPromotionList(promotionList);
+            homestayClientDTO.setMinRoomPrice(roomRepository.getMinPriceOfRoom(homestayClientDTO.getHomestayId()));
+            homestayClientDTO.setMaxRoomPrice(roomRepository.getMaxPriceOfRoom(homestayClientDTO.getHomestayId()));
         });
         return result;
     }

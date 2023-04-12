@@ -1,39 +1,31 @@
-package nvt.doan.entities;
+package nvt.doan.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import nvt.doan.entities.Room;
+import nvt.doan.entities.RoomRate;
+import nvt.doan.entities.User;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
-import java.util.List;
 
-
-
-
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Booking extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookingRequest {
     private int requestId;
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer bookingStatus;
     private Double totalPriceDiscount;
-    @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "userId")
-    @JsonIgnore
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    @JsonIgnore
     private Room room;
-    @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL)
     private RoomRate roomRate;
 }

@@ -165,14 +165,17 @@
                   <div class="card pl-0 ml-0 mr-0">
                      <div class="card-body">
                         <h5 class="card-title">Chi tiết đặt căn hộ của bạn</h5>
+                        <input type="hidden" th:value="${bookingResponse.roomId}" name="roomId"/>
                         <h6 class="card-subtitle mb-2 text-muted">Địa chỉ: <span th:text="${bookingResponse.homestay.address.addressName}"></span></h6>
                         <div class="row">
                            <div class="col-md-6">
                               <p>Nhận căn hộ:</p>
+                              <input type="hidden" th:value="${bookingResponse.startDate}" name="startDate"/>
                               <p class="text-primary" th:text="${#temporals.format(bookingResponse.startDate,'dd/MM/yyy')}"></p>
                            </div>
                            <div class="col-md-6 border-left">
                               <p>Trả căn hộ:</p>
+                              <input type="hidden" th:value="${bookingResponse.endDate}" name="endDate"/>
                               <p class="text-primary" th:text="${#temporals.format(bookingResponse.endDate,'dd/MM/yyyy')}"></p>
                            </div>
                         </div>
@@ -277,7 +280,8 @@
    <div class="row mt-4">
       <div class="col-xs-5 col-md-5 float-left"></div>
       <div class="col-xs-4 col-md-4 float-left t-total-price">Tổng tiền: <span th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</div>
-      <div class="col-xs-3 col-md-3 float-left"><button value="Register" class="btn btn-primary btn-block ">Thanh Toán</button>
+      <input type="hidden" name="totalPriceDiscount" th:value="${bookingResponse.totalPriceDiscount}"/>
+      <div class="col-xs-3 col-md-3 float-left"><button value="Register" class="btn btn-primary btn-block " id="createPayment" >Thanh Toán</button>
       </div>
 </div>
 <div class="container mb-4">
@@ -292,6 +296,7 @@
 <div th:replace="~{users/js-src :: #mainJs}"></div>
 <div>
    <script src="/js/user/list-apartment.js"></script>
+   <script src="/js/user/create-payment.js"></script>
 </div>
 </div>
 </body>

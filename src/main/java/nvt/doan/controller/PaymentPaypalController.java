@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/pay")
-public class PaymentController {
+public class PaymentPaypalController {
     public static final String URL_PAYPAL_SUCCESS = "pay/success";
     public static final String URL_PAYPAL_CANCEL = "pay/cancel";
     private Logger log = LoggerFactory.getLogger(getClass());

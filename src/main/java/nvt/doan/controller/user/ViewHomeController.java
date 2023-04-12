@@ -212,6 +212,10 @@ public class ViewHomeController {
         }
         return "users/user-management";
     }
-
+    @GetMapping("/payment-success")
+    public String getPagePaymentSuccess(Model model){
+        model.addAttribute("successUrl","http://localhost/8080/view/users/index");
+        return "component/payment-success-page";
+    }
 
 }

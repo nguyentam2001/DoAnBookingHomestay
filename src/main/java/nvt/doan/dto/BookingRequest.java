@@ -24,6 +24,7 @@ public class BookingRequest {
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer bookingStatus;
+    private Double depositPrice;
     private Double totalPriceDiscount;
     private User user;
     private Room room;

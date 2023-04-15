@@ -11,6 +11,7 @@ import nvt.doan.utils.Constant;
 import nvt.doan.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -18,10 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.servlet.http.HttpServletRequest;
@@ -214,8 +212,28 @@ public class ViewHomeController {
     }
     @GetMapping("/payment-success")
     public String getPagePaymentSuccess(Model model){
-        model.addAttribute("successUrl","http://localhost/8080/view/users/index");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth != null&& auth.isAuthenticated()  && !(auth instanceof AnonymousAuthenticationToken) ){
+        model.addAttribute("successUrl","/view/users/list-receipts");
+        }else{
+            return "redirect:/admin";
+        }
         return "component/payment-success-page";
+    }
+
+    @GetMapping("/list-receipts")
+    public String geCartBooking(Model model,
+                                @RequestParam (defaultValue ="1") Integer currentPage,
+                                @RequestParam (defaultValue ="4") Integer pageSize){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth != null&& auth.isAuthenticated() && ! (auth instanceof AnonymousAuthenticationToken)){
+            User user= (User) accountService.loadUserByUsername(auth.getName());
+            Page<Booking> bookingListPage = bookingService.findBookingByUserId(user.getUserId(),currentPage,pageSize);
+            model.addAttribute("bookingListPage", bookingListPage);
+        }else{
+            return "redirect:/admin";
+        }
+        return "users/apartment-cart";
     }
 
 }

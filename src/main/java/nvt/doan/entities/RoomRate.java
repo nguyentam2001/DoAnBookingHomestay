@@ -1,5 +1,6 @@
 package nvt.doan.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,5 +20,6 @@ public class RoomRate {
     private String description;
     @OneToOne(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "booking_id")
+    @JsonIgnore
     private Booking booking;
 }

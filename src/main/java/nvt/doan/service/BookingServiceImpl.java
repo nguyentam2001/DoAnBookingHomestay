@@ -14,6 +14,8 @@ import nvt.doan.utils.Constant;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,11 @@ public class BookingServiceImpl  implements BookingService{
 
     @Autowired
     RoomRepository roomRepository;
+
+    @Override
+    public Page<Booking> findBookingByUserId(Integer userId,int currentPage, int pageSize) {
+        return bookingRepository.findBookingByUserId(userId, PageRequest.of(currentPage - 1, pageSize));
+    }
 
     @Override
     public List<BookingDTO> findBookingDetailByUserId(Integer userId) {

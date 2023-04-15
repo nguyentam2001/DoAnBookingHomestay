@@ -45,10 +45,12 @@
                            <div class="col-md-6">
                               <p><span th:text="${bookingResponse.totalDate}"></span> đêm</p>
                               <p>Tổng</p>
+                              <p  class=" border-top">Để giữ phòng, quý khách vui lòng thanh toán:</p>
                            </div>
-                           <div class="col-md-6 t-color-price">
+                           <div class="col-md-6 t-color-price border-left">
                               <p><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPrice, 0, 'COMMA', 0, 'POINT')}"></span> VND</p>
                               <p><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</p>
+                              <p class=" border-top"><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span>VND</p>
                            </div>
                         </div>
                         <div class="row">
@@ -276,16 +278,77 @@
    </div>
 </div>
 <div class="container">
-
    <div class="row mt-4">
-      <div class="col-xs-5 col-md-5 float-left"></div>
-      <div class="col-xs-4 col-md-4 float-left t-total-price">Tổng tiền: <span th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</div>
+      <div class="col-xs-5 col-md-4 float-left"></div>
+      <div class="col-xs-4 col-md-3 float-left ">Tổng: <span th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</div>
       <input type="hidden" name="totalPriceDiscount" th:value="${bookingResponse.totalPriceDiscount}"/>
-      <div class="col-xs-3 col-md-3 float-left"><button value="Register" class="btn btn-primary btn-block " id="createPayment" >Thanh Toán</button>
+      <div class="col-xs-3 col-md-2 float-left"><button value="Register" class="btn btn-primary btn-block " id="createPayment" >Thanh Toán</button>
+      </div>
+      <h5 class=" col-xs-1 col-md-1 float-left">
+         Hoặc
+      </h5>
+      <div class="col-xs-3 col-md-2 float-left"><button class="btn w-100 btn-info" data-toggle="modal" data-target="#depositModal" >Đặt cọc</button>
       </div>
 </div>
 <div class="container mb-4">
    <div class="row">
+   </div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Đặt cọc căn hộ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-6">
+                     <p>Nhận căn hộ:</p>
+                     <input type="hidden" th:value="${bookingResponse.startDate}" name="startDate"/>
+                     <p class="text-primary" th:text="${#temporals.format(bookingResponse.startDate,'dd/MM/yyy')}"></p>
+                  </div>
+                  <div class="col-md-6 border-left">
+                     <p>Trả căn hộ:</p>
+                     <input type="hidden" th:value="${bookingResponse.endDate}" name="endDate"/>
+                     <p class="text-primary" th:text="${#temporals.format(bookingResponse.endDate,'dd/MM/yyyy')}"></p>
+                  </div>
+               </div>
+               <div class="row ">
+                  <div class="col-md-12 ">
+                     <p class="text-primary" >Miễn phí hủy đến 13:59, <span class="text-primary" th:text=" ${#temporals.format(bookingResponse.lastDayCancel,'dd/MM/yyyy')}"></span></p>
+                  </div>
+               </div>
+               <div class="row ">
+                  <div class="col-md-6 border-top">
+                     <p class="text-primary" >Từ 14:00 ngày <span class="text-primary" th:text=" ${#temporals.format(bookingResponse.lastDayCancel,'dd/MM/yyyy')}"></span></p>
+                  </div>
+                  <div class="col-md-6 border-top t-color-price">
+                     <p><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount/3, 0, 'COMMA', 0, 'POINT')}"></span> VND</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-7">
+                     <div class="t-total-price"> Đặt cọc: <span th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount/3, 0, 'COMMA', 0, 'POINT')}"></span> VND</div>
+
+                  </div>
+                  <div class="col-md-5">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                     <button type="button" class="btn btn-primary" id="createDeposit" >Đồng ý</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </div>
 
@@ -297,7 +360,6 @@
 <div>
    <script src="/js/user/list-apartment.js"></script>
    <script src="/js/user/create-payment.js"></script>
-</div>
 </div>
 </body>
 </html>

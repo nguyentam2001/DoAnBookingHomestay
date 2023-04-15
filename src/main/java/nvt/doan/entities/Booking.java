@@ -24,8 +24,10 @@ public class Booking extends BaseEntity {
     private int requestId;
     private LocalDate startDate;
     private LocalDate endDate;
+    //0-Empty room, 1-Booking room
     private Integer bookingStatus;
     private Double totalPriceDiscount;
+    private Double depositPrice;
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "userId")
     @JsonIgnore

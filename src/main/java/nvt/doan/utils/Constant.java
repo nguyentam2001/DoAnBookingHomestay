@@ -8,4 +8,6 @@ public interface Constant {
     public static final Integer DAY_CANCEL=2;
     public static final LocalDate DATE_NOW=LocalDate.now();
     public static final String PAYMENT_SUCCESS_STATUS="00";
+    public static final Integer CHECKOUT_STATUS=0;
+    public static final Integer CANCEL_STATUS = 2;
 }

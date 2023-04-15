@@ -51,6 +51,10 @@ body {
   width: 300px;
 }
 
+.t-width-100{
+width: 100px;
+}
+
 .t-title{
   color: #7e7e7e;
   font-weight: bold;
@@ -58,6 +62,13 @@ body {
   text-transform: uppercase;
   padding-left: 0px;
   padding-bottom: 10px;
+}
+.t-font-size-10{
+    font-size: 10px;
+}
+
+.js-wc-label{
+    font-size:16px
 }
 
 /* card */

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-public class RoomRate {
+public class RoomRate extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rateId;

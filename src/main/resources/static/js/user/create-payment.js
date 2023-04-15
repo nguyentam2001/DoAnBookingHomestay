@@ -24,7 +24,9 @@ function createDeposit(){
             startDate:$("[name='startDate']").val(),
             endDate:$("[name='endDate']").val(),
             totalPriceDiscount:$("[name='totalPriceDiscount']").val(),
-
+            numberPersons:$("[name='numberPersons']").val(),
+            lastDayCancel:$("[name='lastDayCancel']").val(),
+            totalDate:$("[name='totalDate']").val()
         }),
         success:function(data){
             window.location.href=data.url
@@ -53,7 +55,9 @@ function createPayment(){
             startDate:$("[name='startDate']").val(),
             endDate:$("[name='endDate']").val(),
             totalPriceDiscount:$("[name='totalPriceDiscount']").val(),
-
+            numberPersons:$("[name='numberPersons']").val(),
+            lastDayCancel:$("[name='lastDayCancel']").val(),
+            totalDate:$("[name='totalDate']").val()
         }),
         success:function(data){
             window.location.href=data.url

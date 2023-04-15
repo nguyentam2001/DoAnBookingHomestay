@@ -21,7 +21,7 @@ public interface RoomRepository  extends JpaRepository<Room,Integer> {
             "  AND room_id NOT IN (\n" +
             "    SELECT room_id FROM Booking\n" +
             "    WHERE start_date <= ?1 AND end_date >= ?2\n" +
-            "    AND booking_status = 0\n" +
+            "AND  room_id  IN (SELECT room_id FROM Booking WHERE booking_status= 1)"+
             "  )\n" +
             ")\n" +
             "AND r.homestay_id = (\n" +

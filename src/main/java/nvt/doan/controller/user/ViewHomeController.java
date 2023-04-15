@@ -229,6 +229,8 @@ public class ViewHomeController {
         if(auth != null&& auth.isAuthenticated() && ! (auth instanceof AnonymousAuthenticationToken)){
             User user= (User) accountService.loadUserByUsername(auth.getName());
             Page<Booking> bookingListPage = bookingService.findBookingByUserId(user.getUserId(),currentPage,pageSize);
+            model.addAttribute("currentPage", currentPage);
+            model.addAttribute("totalPages", bookingListPage.getTotalPages());
             model.addAttribute("bookingListPage", bookingListPage);
         }else{
             return "redirect:/admin";

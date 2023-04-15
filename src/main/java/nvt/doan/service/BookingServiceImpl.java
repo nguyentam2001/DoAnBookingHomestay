@@ -2,6 +2,7 @@ package nvt.doan.service;
 
 import nvt.doan.dto.BookingDTO;
 import nvt.doan.dto.BookingResponse;
+import nvt.doan.dto.CancelReasonDTO;
 import nvt.doan.dto.RoomResponse;
 import nvt.doan.entities.Booking;
 import nvt.doan.entities.Promotion;
@@ -26,9 +27,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import static nvt.doan.utils.Constant.CANCEL_STATUS;
+import static nvt.doan.utils.Constant.CHECKOUT_STATUS;
+
 @Service
 @Component("bookingServiceImpl")
 public class BookingServiceImpl  implements BookingService{
+
 
     @Autowired
     BookingRepository bookingRepository;
@@ -38,6 +43,7 @@ public class BookingServiceImpl  implements BookingService{
 
     @Override
     public Page<Booking> findBookingByUserId(Integer userId,int currentPage, int pageSize) {
+
         return bookingRepository.findBookingByUserId(userId, PageRequest.of(currentPage - 1, pageSize));
     }
 
@@ -92,6 +98,23 @@ public class BookingServiceImpl  implements BookingService{
         newBooking.setEndDate(checkOut);
         newBooking.setNumberPersons(Integer.parseInt(numberPersons));
         return newBooking;
+    }
+
+    @Override
+    public void checkOutBooking(Integer bookingId) {
+        Optional<Booking> bookingOptional=bookingRepository.findById(bookingId);
+        Booking booking=bookingOptional.get();
+        booking.setBookingStatus(CHECKOUT_STATUS);
+        bookingRepository.save(booking);
+    }
+
+    @Override
+    public void cancelBooking(CancelReasonDTO cancelReason) {
+        Optional<Booking> bookingOptional=bookingRepository.findById(cancelReason.getRequestId());
+        Booking booking=bookingOptional.get();
+        booking.setBookingStatus(CANCEL_STATUS);
+        booking.setReason(cancelReason.getReason());
+        bookingRepository.save(booking);
     }
 
     private double getTotalPriceDiscount(double totalPrice, Double percentDiscount) {

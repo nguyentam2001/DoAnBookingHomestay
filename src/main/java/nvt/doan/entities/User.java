@@ -32,6 +32,7 @@ public class User implements UserDetails {
     private String password;
     private String address;
     private String phone;
+    private String userImageUrl;
     private String gender;
     private int age;
 
@@ -42,7 +43,7 @@ public class User implements UserDetails {
     @JoinTable(name = "account_role",
             joinColumns = @JoinColumn(name = "account_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private  List<Role> roles;
+    private List<Role> roles;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 

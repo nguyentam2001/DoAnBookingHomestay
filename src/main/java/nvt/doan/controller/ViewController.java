@@ -56,10 +56,17 @@ public class ViewController {
         model.addAttribute("homestays",homestayService.getAll());
         return "admin/room-form-update";
     }
+    @GetMapping("/booking-manager")
+    public String bookingManager(){
+        return "admin/booking-manager";
+    }
+
     @GetMapping("/register")
     public String registerForm(){
-        return "user/register";
+        return "users/register";
     }
+
+
 
 
     @GetMapping("/success-register")

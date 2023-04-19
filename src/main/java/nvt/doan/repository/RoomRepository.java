@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RoomRepository  extends JpaRepository<Room,Integer> {
@@ -61,6 +62,9 @@ public interface RoomRepository  extends JpaRepository<Room,Integer> {
 
     @Query(value="select max(r.price) from room r join homestay h on r.homestay_id= h.homestay_id where h.homestay_id=?1",nativeQuery = true)
     Double getMaxPriceOfRoom(Integer homestayId);
+
+    @Query(value="select r.* from room r join booking b on r.room_id = b.room_id where request_id=?1 ",nativeQuery = true)
+    Optional<Room> findRoomByRequestId(Integer requestId);
 
 
 }

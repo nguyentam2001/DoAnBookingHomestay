@@ -50,13 +50,15 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**","/fonts/**","/images/**","/js/**")
                 .permitAll()
-                .antMatchers("/view/users/index","/view/users/search","/view/users/search/rooms")//user
+                .antMatchers("/view/users/index","/view/users/search","/view/users/search/rooms","/view/register","/api/v1/auth/**")//user
                 .permitAll()
-                .antMatchers("/api/v1/auth/**","/pay/**","/api/v1/promotion/**")
+                .antMatchers("/api/v1/auth/**","/pay/**","/api/v1/promotion/**","/api/v1/user/**")
                 .permitAll()
-                .antMatchers("/api/v1/**")
+                .antMatchers("/api/v1/**","/api/v1/booking/**")
                 .hasRole("ADMIN")
-                .antMatchers("/view/users/favourites","/api/v1/users/pay/**","/api/v1/users/rate/**","/api/v1/users/booking/**").hasRole("ADMIN")
+                .antMatchers("/view/users/favourites","/api/v1/users/pay/**",
+                        "/api/v1/users/rate/**","/api/v1/users/booking/**",
+                        "/api/v1/users/account/**","/api/v1/booking/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/admin")
@@ -88,11 +90,5 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         successHandler.setDefaultTargetUrl("/");
         return successHandler;
     }
-//    @Bean
-//    public AuthenticationSuccessHandler authenticationSuccessHandler2() {
-//        SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
-//        successHandler.setTargetUrlParameter("targetUrl");
-//        successHandler.setDefaultTargetUrl("/");
-//        return successHandler;
-//    }
+
 }

@@ -34,6 +34,10 @@ body {
     float: left;
 }
 
+.t-bg-color{
+    background:#fff;
+}
+
 .navbar-left {
     float: left;
 }

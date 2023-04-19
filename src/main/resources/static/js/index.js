@@ -63,27 +63,27 @@ const registerBtn = document.getElementById("register")
 
 //Thực hiện đăng ký
 //
-//createBtn.addEventListener("click", async () => {
-//    try {
-//            await axios.post("/api/v1/auth/register",
-//                {
-//                    fullname: fullnameInput.value,
-//                    username:usernameInput.value,
-//                    phone: phoneInput.value,
-//                    address:addressInput.value,
-//                    email: emailInput.value,
-//                    password: passwordInput.value,
-//                    address: null,
-//                })
-//               toastr.success("Đăng ký thông tin thành công!")
-//              setTimeout(function(){
-//                    window.location.href = "/view/success-register";
-//              },1000)
-//
-//    } catch (e){
-//        toastr.error(e.response.message);
-//    }
-//})
+createBtn.addEventListener("click", async () => {
+    try {
+            await axios.post("/api/v1/auth/register",
+                {
+                    fullname: fullnameInput.value,
+                    username:usernameInput.value,
+                    phone: phoneInput.value,
+                    address:addressInput.value,
+                    email: emailInput.value,
+                    password: passwordInput.value,
+                    address: null,
+                })
+              toastr.success("Đăng ký thông tin thành công!")
+              setTimeout(function(){
+                    window.location.href = "/view/success-register";
+              },1000)
+
+    } catch (e){
+        toastr.error(e.response.message);
+    }
+})
 
 
 // Validate form

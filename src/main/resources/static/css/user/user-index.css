@@ -202,6 +202,10 @@ background-image: none !important;
 .t-image-cover{
     object-fit: cover;
 }
+.t-image-profile{
+    width:181px;
+    height:181px;
+}
 
 .t-image-cover-card{
     width: 278px !important;
@@ -253,6 +257,15 @@ background-image: none !important;
   padding-bottom: 30px;
   font-size: .875rem;
   color: #333;
+}
+
+.t-text-breadcrumb{
+    margin-left: 10px;
+    font-style: 12px;
+    padding-top: -10px;
+    margin-bottom:0px !important;
+    cursor: pointer;
+    color: #007bff;
 }
 
 

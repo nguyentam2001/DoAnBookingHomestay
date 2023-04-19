@@ -24,4 +24,5 @@ public interface BookingRepository extends JpaRepository<Booking,Integer>, Custo
     List<BookingDTO> findBookingDetailByUserId(Integer userId);
     @Query(value = "select * from Booking b where b.user_id=?1 group by b.request_id",nativeQuery = true)
     Page<Booking> findBookingByUserId(Integer userId,Pageable pageable);
+
 }

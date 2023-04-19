@@ -4,6 +4,7 @@ import nvt.doan.entities.User;
 import nvt.doan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,8 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<?> getAll(@RequestParam(value = "page", defaultValue = "1") int currentPage,
                                       @RequestParam(value = "size", defaultValue = "3") int size){
-        return ResponseEntity.ok(userService.findAll(currentPage,size));
+        Page<User> users= userService.findAll(currentPage,size);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping ("/users/{userId}")

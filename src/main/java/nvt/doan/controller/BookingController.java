@@ -23,4 +23,9 @@ public class BookingController {
             return ResponseEntity.ok(bookingService.findBookingDetailByUserId(userId));
     }
 
+    @GetMapping("/bookings")
+    public ResponseEntity<?> getAllBookings(){
+        return ResponseEntity.ok(bookingService.getAllBookingsResponse());
+    }
+
 }

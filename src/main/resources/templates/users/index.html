@@ -4,6 +4,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
    <head th:replace="~{users/head :: #head}">
    </head>
+   <style>
+      .t-text-breadcrumb{
+         display:none;
+      }
+      .t-mt-header{
+         margin-bottom:3rem !important;
+      }
+   </style>
    <!-- body -->
    <body class="main-layout">
       <!-- loader  -->
@@ -154,7 +162,7 @@
                      <div class="col-md-12">
                            <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
                            <figure>
-                              <input type="hidden" name="address" value="3">
+                              <input type="hidden" name="address" value="8">
                               <img class="t-border-radius-img t-height-190 t-image-cover" src="/images/user/Hoian.jpg" alt="#"/>
                            </figure>
                            <div class="position-absolute t-card-title-place" >
@@ -171,7 +179,7 @@
                      <div class="col-md-12">
                         <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
                            <figure>
-                              <input type="hidden" name="address" value="4">
+                              <input type="hidden" name="address" value="7">
                               <img class="t-border-radius-img t-height-190 t-image-cover" src="/images/user/Ninhbinh.jpg" alt="#"/>
                            </figure>
                            <div class="position-absolute t-card-title-place" >
@@ -187,11 +195,62 @@
                      <div class="col-md-12">
                         <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
                            <figure>
-                              <input type="hidden" name="address" value="5">
+                              <input type="hidden" name="address" value="6">
                               <img class="t-border-radius-img t-height-190 t-image-cover" src="/images/user/Danang.jpg" alt="#"/>
                            </figure>
                            <div class="position-absolute t-card-title-place" >
                               <p class="mb-0">Đà Nẵng</p>
+                              <img src="/images/user/Vietnam.png" class="" alt="#"/>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                           <figure>
+                              <input type="hidden" name="address" value="3">
+                              <img class="t-border-radius-img t-height-190 t-image-cover" src="/images/user/Hanoi-2.jpg" alt="#"/>
+                           </figure>
+                           <div class="position-absolute t-card-title-place" >
+
+                              <p class="mb-0">Hà Nội</p>
+                              <img src="/images/user/Vietnam.png" class="t-image-cover" alt="#"/>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                           <figure>
+                              <input type="hidden" name="address" value="4">
+                              <img class="t-border-radius-img t-height-190 t-image-cover" src="/images/user/Bacgiang.jpg" alt="#"/>
+                           </figure>
+                           <div class="position-absolute t-card-title-place" >
+                              <p class="mb-0">Bắc Giang</p>
+                              <img src="/images/user/Vietnam.png" class="t-image-cover" alt="#"/>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="img_box t-cursor-pointer position-relative sendButton" onclick="findAddress(event)">
+                           <figure>
+                              <input type="hidden" name="address" value="5">
+                              <img class="t-border-radius-img t-height-190 t-image-cover" src="/images/user/Nghean.jpg" alt="#"/>
+                           </figure>
+                           <div class="position-absolute t-card-title-place" >
+                              <p class="mb-0">Nghệ An</p>
                               <img src="/images/user/Vietnam.png" class="" alt="#"/>
                            </div>
                         </div>

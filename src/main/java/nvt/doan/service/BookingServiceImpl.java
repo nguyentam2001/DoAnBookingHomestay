@@ -1,15 +1,13 @@
 package nvt.doan.service;
 
-import nvt.doan.dto.BookingDTO;
-import nvt.doan.dto.BookingResponse;
-import nvt.doan.dto.CancelReasonDTO;
-import nvt.doan.dto.RoomResponse;
+import nvt.doan.dto.*;
 import nvt.doan.entities.Booking;
 import nvt.doan.entities.Promotion;
 import nvt.doan.entities.Room;
 import nvt.doan.entities.User;
 import nvt.doan.repository.BookingRepository;
 import nvt.doan.repository.RoomRepository;
+import nvt.doan.repository.UserRepository;
 import nvt.doan.service.account.AccountService;
 import nvt.doan.utils.Constant;
 import org.modelmapper.ModelMapper;
@@ -37,6 +35,10 @@ public class BookingServiceImpl  implements BookingService{
 
     @Autowired
     BookingRepository bookingRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
 
     @Autowired
     RoomRepository roomRepository;
@@ -115,6 +117,20 @@ public class BookingServiceImpl  implements BookingService{
         booking.setBookingStatus(CANCEL_STATUS);
         booking.setReason(cancelReason.getReason());
         bookingRepository.save(booking);
+    }
+    //get list booking response
+    @Override
+    public List<BookingRequest> getAllBookingsResponse() {
+        List<Booking> bookings= bookingRepository.findAll();
+        List<BookingRequest> bookingsResponse=new ArrayList<>();
+        ModelMapper modelMapper = new ModelMapper();
+        bookings.forEach(booking -> {
+            BookingRequest newBookingRequest = modelMapper.map(booking,BookingRequest.class);
+            newBookingRequest.setUser(userRepository.findUserByBookingId(booking.getRequestId()).get());
+            newBookingRequest.setRoom(roomRepository.findRoomByRequestId(booking.getRequestId()).get());
+            bookingsResponse.add(newBookingRequest);
+        });
+        return bookingsResponse;
     }
 
     private double getTotalPriceDiscount(double totalPrice, Double percentDiscount) {

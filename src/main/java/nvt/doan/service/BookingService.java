@@ -1,6 +1,7 @@
 package nvt.doan.service;
 
 import nvt.doan.dto.BookingDTO;
+import nvt.doan.dto.BookingRequest;
 import nvt.doan.dto.BookingResponse;
 import nvt.doan.dto.CancelReasonDTO;
 import nvt.doan.entities.Booking;
@@ -18,4 +19,8 @@ public interface BookingService {
     void checkOutBooking(Integer bookingId);
 
     void cancelBooking(CancelReasonDTO cancelReason);
+
+
+
+    public List<BookingRequest> getAllBookingsResponse();
 }

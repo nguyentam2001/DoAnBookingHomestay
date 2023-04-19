@@ -70,9 +70,9 @@ function render() {
       {
         render: function (data, type, row) {
           if (data == false) {
-            return "Trống";
+            return "Hoạt động";
           } else {
-            return "Đã thuê";
+            return "Dừng";
           }
         },
 

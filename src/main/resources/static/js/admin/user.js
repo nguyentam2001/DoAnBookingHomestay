@@ -193,6 +193,7 @@ function save() {
       username: $("[name='username']").val(),
       email: $("[name='email']").val(),
       address: $("[name='address']").val(),
+      active:true,
       phone: $("[name='phone']").val(),
       gender: $("[name='gender']").val(),
       age: $("[name='age']").val(),

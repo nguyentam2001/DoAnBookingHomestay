@@ -46,13 +46,14 @@
                                 Tên
                             </td>
                             <td class="t-text-table">
-                                <input type="text" th:value="${user.fullName}" class="form-control">
+                                <input type="text" th:value="${user.fullName}" name="fullName" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td class="t-text-table-opacity">
                                 Email
                             </td>
+                            <input type="hidden" th:value="${user.email}" name="email" class="form-control"/>
                             <td class="t-text-table"  th:text="${user.email}">
                             </td>
                         </tr>
@@ -68,7 +69,7 @@
                                 Giới tính
                             </td>
                             <td class="t-text-table">
-                                <select class="form-control" th:value="${user.gender}" >
+                                <select class="form-control" th:value="${user.gender}" name="gender" >
                                     <option value="male">Nam</option>
                                     <option value="female">Nữ</option>
                                 </select>
@@ -79,29 +80,32 @@
                                 Địa chỉ
                             </td>
                             <td class="t-text-table">
-                                <input type="text" th:value="${user.address}" class="form-control">
+                                <input type="text" th:value="${user.address}" class="form-control" name="address">
                             </td>
                         </tr>
                         <tr>
                             <td>
                             </td>
                             <td class="t-text-table">
-                                <button type="button" class="btn btn-danger">Lưu</button>
+                                <button type="button" class="btn btn-danger" id="submitButton">Lưu</button>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="col-md-4 border-left">
                     <div class="container">
-
                         <div class="avatar-upload">
                             <div class="avatar-edit">
                                 <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
                                 <label for="imageUpload"></label>
                             </div>
-                            <div class="avatar-preview">
-                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-                                </div>
+                            <div class="avatar-preview" id="parentImagePreview">
+                                <th:block th:if="${user.userImageUrl!=null}">
+                                    <img id="imagePreview" class="rounded-circle" th:src="@{/images/__${user.userImageUrl}__}" alt="" srcset="">
+                                </th:block>
+                                <th:block th:if="${user.userImageUrl==null}">
+                                    <img id="imagePreview" class="rounded-circle" th:src="@{/images/user/user-default.png}" alt="" srcset="">
+                                </th:block>
                             </div>
                         </div>
                         <div >
@@ -131,9 +135,9 @@
 
 <div th:replace="~{users/js-src :: #mainJs}"></div>
 <div>
-
     <script src="/js/user/list-favourite.js"></script>
     <script src="/js/user/image-one.js"></script>
+    <script src="/js/user/user-management.js"></script>
 </div>
 </body>
 </html>

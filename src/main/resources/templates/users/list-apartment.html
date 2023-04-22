@@ -110,7 +110,7 @@
                                           <div class="col-4">
                                                 <p class="text-right" th:onclick="'addRoomFavourite(' + ${ele.roomId} + ')'"><i class="fa-regular fa-heart t-cursor-pointer t-icon-red"></i></p>
 <!--                                                <p><form method="post" action="/view/users/favourites" ><input type="hidden" name="roomId" th:value="${ele.roomId}" /> <button><i class="fa-regular fa-heart t-cursor-pointer t-icon-red"></i></button> </form> </p>-->
-                                                <p class="t-header-card-text-red mb-1 float-right"><span class="t-header-card-text-red float-right" th:text="${ele.ratePoint==0?'Chưa có đánh giá':ele.ratePoint+'/5sao'}"></span></p>
+                                                <p class="t-header-card-text-red mb-1 float-right"><span class="t-header-card-text-red float-right" th:text="${ele.ratePoint==0?'Chưa có đánh giá':#numbers.formatDecimal(ele.ratePoint, 1, 1, 'COMMA')+'/5sao'}"></span></p>
                                                 <p class="t-header-card-text-red mb-1 float-right"><span th:text="${totalDate}"></span> đêm, <span th:text="${numberPersons}"></span> khách</p>
                                                 <p class="t-header-card mb-0 float-right"><span  th:text="${#numbers.formatDecimal(ele.price * totalDate,0,'COMMA',0,'POINT')} "></span> <span class="t-header-card-text-red">vnd</span></p>
                                                 <p class="t-header-card-text-red mb-0 float-right">Bao gồm thuế, phí</p>

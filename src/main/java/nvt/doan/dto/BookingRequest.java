@@ -29,6 +29,7 @@ public class BookingRequest {
     private Integer totalDate;
     private Double depositPrice;
     private Double totalPriceDiscount;
+    private String reason;
     private User user;
     private Room room;
     private RoomRate roomRate;

@@ -166,7 +166,9 @@ width: 100px;
        font-size: 12px;
        color: red;
 }
-
+.t-text-red{
+     color: red;
+}
 .t-icon-red{
        color: red;
 }

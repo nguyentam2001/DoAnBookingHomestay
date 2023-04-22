@@ -1,6 +1,8 @@
 package nvt.doan.controller;
 
 import lombok.Getter;
+import nvt.doan.dto.BookingRequest;
+import nvt.doan.service.BookingService;
 import nvt.doan.service.HomestayService;
 import nvt.doan.service.account.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,10 @@ public class ViewController {
     @Autowired
     @Qualifier("homestayServiceImpl")
     HomestayService homestayService;
+
+    @Autowired
+    @Qualifier("bookingServiceImpl")
+    BookingService bookingService;
     @Autowired
     private  AuthService authService;
     @GetMapping("/index")
@@ -79,6 +85,16 @@ public class ViewController {
         return "component/success-page-confirm";
     }
 
+    @GetMapping("/view-receipt/{requestId}")
+    public String viewReceipt(@PathVariable Integer requestId,Model model){
+        BookingRequest receipt=bookingService.getBookingRequestById(requestId);
+        model.addAttribute("receipt",receipt);
+        return "admin/detail-receipt";
+    }
 
 
+    @GetMapping("/report-manager.js")
+    public String reportManager(){
+        return "admin/report-manager.js";
+    }
 }

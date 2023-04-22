@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{users/head :: #head}">
+</head>
+<!-- body -->
+<style>
+   .form-control{
+      border: none;
+      padding-left: 0;
+   }
+</style>
+<body class="main-layout">
+<!-- loader  -->
+<!-- <div class="loader_bg">
+      <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+   </div> -->
+<!-- end loader -->
+<!-- header -->
+
+<!-- end header inner -->
+<!-- end header -->
+
+<section>
+    <div class="container">
+
+    </div>
+</section>
+<!-- end form_lebal -->
+<!-- choose  section -->
+<div class="choose mt-2">
+    <div class="container">
+        <div class="row">
+                <span class="t-cursor-pointer t-title"  onclick="history.go(-1)">Quay lại </span>
+        </div>
+        <div class="row">
+            <div class="col-md-2 ">
+
+            </div>
+            <div class="col-md-8 ">
+                <div class="row mb-2">
+                </div>
+                <div class="row mb-2">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="card pl-0 ml-0 mr-0">
+                            <div class="card-body">
+                                <h3 class="card-title text-center">Chi tiết hoá đơn căn hộ</h3>
+                                <h6 class="t-title mb-2 text-muted">Homestay: <span th:text="${receipt.room.homestay.homestayName}"></span></h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Căn hộ: <span th:text="${receipt.room.homestay.homestayName}"></span></h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Địa chỉ: <span th:text="${receipt.room.homestay.address.addressName}"></span></h6>
+                                <h2 class="t-title">Thông tin đầy đủ của khách hàng</h2>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label for="fullName">Họ và tên</label>
+                                            <input type="text" name="fullName" id="fullName" class="form-control"
+                                                   placeholder="Họ và tên" tabindex="1" th:value="${receipt.user.fullName}">
+                                        </div>
+                                    </div>
+                                    <div class="border-left col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="text" name="email" id="email" class="form-control " placeholder="email"
+                                                   tabindex="2" th:value="${receipt.user.email}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">Tên tài khoản</label>
+                                            <input type="text" name="username" id="username" class="form-control"
+                                                   placeholder="Tên tài khoản" tabindex="1" th:value="${receipt.user.username}">
+                                        </div>
+                                    </div>
+                                    <div class="border-left col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone">Số điện thoại</label>
+                                            <input type="text" name="phone" id="phone" class="form-control "
+                                                   placeholder="Số điện thoại" tabindex="2" th:value="${receipt.user.phone}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom">
+                                    <label for="phone">Địa chỉ</label>
+                                    <input type="text" name="address" id="address" class="form-control "
+                                           placeholder="Display Name" tabindex="3" th:value="${receipt.user.address}">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="t-title">Nhận căn hộ:</p>
+                                        <p th:text="${#temporals.format(receipt.startDate,'dd/MM/yyy')}">20 tháng 2 năm 20022</p>
+                                    </div>
+                                    <div  class="col-md-6 border-left">
+                                        <p class="t-title">Trả căn hộ:</p>
+                                        <p th:text="${#temporals.format(receipt.endDate,'dd/MM/yyy')}">20 tháng 2 năm 20022</p>
+                                    </div>
+                                </div>
+                                <p>Tổng thời gian lưu trú:</p>
+                                <p><span th:text="${receipt.totalDate}"></span>: đêm</p>
+                                <div class="row">
+                                    <div class="col-md-6 border-top">
+                                        <p class="t-title pt-2">Bạn đã chọn</p>
+                                        <p>1 căn hộ cho <span th:text="${receipt.numberPersons}"></span> người lớn</p>
+                                        <p>Số giường ngủ: <span th:text="${receipt.room.bedNumbers}"></span></p>
+                                        <p>Mô tả: <span th:text="${receipt.room.roomDescription}"></span></p>
+                                    </div>
+                                    <div class="border-left col-md-6 border-top">
+                                        <p class="t-title pt-2">Thanh toán</p>
+                                        <p class="t-text-red">Trạng thái:
+                                            <th:block th:if="${receipt.bookingStatus==0}">
+                                                <span >Đã thuê</span>
+                                            </th:block>
+                                            <th:block th:if="${receipt.bookingStatus==1}">
+                                                <span>Đang thuê</span>
+                                            </th:block>
+                                            <th:block th:if="${receipt.bookingStatus==3}">
+                                                <span>Chờ xác nhận huỷ</span>
+                                            </th:block>
+                                            <th:block th:if="${receipt.bookingStatus==2}">
+                                                <span>Đã huỷ</span>
+                                            </th:block>
+                                        </p>
+
+                                        <th:block th:if="${receipt.bookingStatus==3||receipt.bookingStatus==4}">
+                                            <p class="t-text-red">Lý do huỷ: <span th:text="${receipt.reason}"></span></p>
+                                        </th:block>
+                                        <th:block th:if="${receipt.depositPrice==receipt.totalPriceDiscount}">
+                                            <p>Đã thanh toán:
+                                                <span th:text="${#numbers.formatDecimal(receipt.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND
+                                            </p>
+                                        </th:block>
+
+                                        <th:block th:if="${receipt.depositPrice!=receipt.totalPriceDiscount}">
+                                            <p>Tiền cọc:
+                                                <span th:text="${#numbers.formatDecimal(receipt.depositPrice, 0, 'COMMA', 0, 'POINT')}"></span> VND
+                                            </p>
+                                        </th:block>
+
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 border-top">
+
+                                    </div>
+                                    <div class=" col-md-6 border-top pt-4">
+                                        <div class="row">
+                                            <div class=" col-md-6 ">
+                                                <th:block th:if="${receipt.bookingStatus==3}">
+                                                    <button value="Register" class="btn btn-danger btn-block "
+                                                            tabindex="7" th:onclick="'confirmCancelBooking(' + ${receipt.requestId} + ')'" >Xác nhận huỷ</button>
+                                                </th:block>
+                                            </div>
+                                            <div class=" col-md-6">
+                                                <button value="Register" class="btn btn-primary btn-block "
+                                                        tabindex="7"  onclick="history.go(-1)">Đóng</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- end testimonial -->
+
+<!-- end footer -->
+<!-- Javascript files-->
+<footer th:replace="~{users/footer :: #footer}">
+</footer>
+<div th:replace="~{users/js-src :: #mainJs}"></div>
+<script src="/js/admin/booking-manager.js"></script>
+</body>
+
+</html>

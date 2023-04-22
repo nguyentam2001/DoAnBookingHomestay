@@ -46,6 +46,31 @@ body {
     text-align: right;
 }
 
+.t-mb-6{
+margin-bottom:0px;
+padding-right:0px
+}
+.t-flex{
+    display: flex;
+
+    align: center
+}
+.t-pt-5{
+  padding-top:5px
+}
+.t-width-120{
+    min-width:120px
+}
+.t-width-80{
+    min-width:80px
+}
+.t-flex-end{
+    justify-content: flex-end
+}
+.t-mb-16{
+margin-bottom:16px;
+}
+
 .navbar-top-links {
     margin: 0;
 }

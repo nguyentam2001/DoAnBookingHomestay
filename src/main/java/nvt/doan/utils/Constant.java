@@ -10,4 +10,5 @@ public interface Constant {
     public static final String PAYMENT_SUCCESS_STATUS="00";
     public static final Integer CHECKOUT_STATUS=0;
     public static final Integer CANCEL_STATUS = 2;
+    public static final Integer WAIT_CANCEL = 3;
 }

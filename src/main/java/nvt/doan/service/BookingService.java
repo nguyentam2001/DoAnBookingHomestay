@@ -23,4 +23,11 @@ public interface BookingService {
 
 
     public List<BookingRequest> getAllBookingsResponse();
+
+    public BookingRequest getBookingRequestById( Integer requestId );
+
+
+    void confirmCancelBooking(CancelReasonDTO cancelReason);
+
+    List<BookingRequest> getReportBookings();
 }

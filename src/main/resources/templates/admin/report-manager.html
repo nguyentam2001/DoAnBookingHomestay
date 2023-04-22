@@ -49,13 +49,61 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Quản lý hoá đơn</h1>
+                <div class="col-md-12">
+
+                    <h1 class="page-header">Thống kê báo cáo</h1>
                 </div>
+
                 <!-- /.col-lg-12 -->
             </div>
-            <div  class="row">
-                <!--                <button class="ml-16 mb-16 btn btn-primary" data-toggle="modal" data-target="#homestayFormModal">Thêm Homestay</button>-->
+            <div  class="row t-mb-16">
+                <div class="col-md-4" >
+                    <div  class="row">
+                        <div class="col-md-12">
+                            <div class="t-flex">
+                                <span class="t-width-120 t-pt-5">Lọc theo tiêu chí:</span>
+                                <select class="form-control book_n" id="selectSort" name="selectSort">
+
+                                    <option value="asc" selected="selected">Giá từ thấp đến cao</option>
+
+                                    <option value="desc">Giá từ cao đến thấp</option>
+
+                                    <option value="ascRate">Đánh giá từ cao đến thấp</option>
+
+                                    <option value="descRate">Đánh giá từ thấp lên cao</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-8 t-mb-2" >
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="t-flex">
+                                <span class="t-width-80 t-pt-5">Từ ngày:</span>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="t-flex">
+                                <span class="t-width-80 t-pt-5">Đến ngày:</span>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="t-flex t-flex-end float-right">
+                                <span class="t-width-80 t-pt-5">Doanh thu:</span>
+                               <span  class="t-width-80 t-pt-5" >8000</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
             <div class="row">
@@ -64,24 +112,22 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Chi tiết hoá đơn
+                            Chi tiết hoá đơn
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead class="bg-orange">
-                                        <tr>
-                                            <th>Mã hoá đơn</th>
-                                            <th>Tên khách hàng</th>
-                                            <th>Số điện thoại</th>
-                                            <th>Giới tính</th>
-                                            <th>Ngày thuê</th>
-                                            <th>ngày trả</th>
-                                            <th>Tiền thanh toán</th>
-                                            <th>Trạng thái</th>
-                                            <th>Xem chi tiết</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Tên homestay</th>
+                                        <th>Tên Căn hộ</th>
+                                        <th>Tên Khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Ngày thuê</th>
+                                        <th>ngày trả</th>
+                                        <th>Tiền thanh toán</th>
+                                    </tr>
                                     </thead>
                                 </table>
                             </div>
@@ -153,28 +199,28 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-<script src="../js/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="../js/metisMenu.min.js"></script>
+<script src="/js/metisMenu.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- DataTables JavaScript -->
-<script src="../js/dataTables/jquery.dataTables.min.js"></script>
-<script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
-<script src="../js/toastr-config.js"></script>
+<script src="/js/dataTables/jquery.dataTables.min.js"></script>
+<script src="/js/dataTables/dataTables.bootstrap.min.js"></script>
+<script src="/js/toastr-config.js"></script>
 <!-- Custom Theme JavaScript -->
-<script src="../js/startmin.js"></script>
-<script src="../js/utils.js"></script>
+<script src="/js/startmin.js"></script>
+<script src="/js/utils.js"></script>
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script src="../js/multiple-image.js"></script>
-<script src="../js/admin/booking-manager.js"></script>
+<script src="/js/multiple-image.js"></script>
+<script src="/js/admin/report-manager.js"></script>
 <!--link button export file Excel, PDF-->
 <script  src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
 <script   src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

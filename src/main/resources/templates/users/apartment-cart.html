@@ -107,7 +107,7 @@
                                                 <p class="t-header-card-text-red mb-0 float-right">Bao gồm thuế, phí</p>
                                              </div>
                                           </div>
-                                          <th:block th:if="${(ele.totalPriceDiscount == ele.depositPrice)&&(ele.roomRate==null)}">
+                                          <th:block th:if="${(ele.totalPriceDiscount == ele.depositPrice)&&(ele.roomRate==null)&&(ele.bookingStatus==0)}">
                                              <div class="row">
                                                 <div class="col-md-12">
                                                    <!-- Button trigger modal -->
@@ -127,10 +127,10 @@
                                              <div class="row">
                                                 <div class="col-md-12">
                                              <!-- Button trigger modal -->
-                                             <button type="button" class="btn btn-primary btn-sm float-right t-width-100  mt-2"
-                                                     th:onclick="'showRateRoom(' + ${ele.requestId} + ')'" disabled>
-                                                Đã đánh giá
-                                             </button>
+                                                <button type="button" class="btn btn-primary btn-sm float-right t-width-100  mt-2"
+                                                        th:onclick="'showRateRoom(' + ${ele.requestId} + ')'" disabled>
+                                                   Đã đánh giá
+                                                </button>
                                                 </div>
                                              </div>
                                           </th:block>
@@ -151,6 +151,12 @@
                                                         th:onclick="'showCancelBooking(' + ${ele.requestId} + ')'" >
                                                    Huỷ phòng
                                                 </button>
+                                                </th:block>
+                                                <th:block th:if="${ele.bookingStatus==3}">
+                                                   <button type="button" class="btn btn-danger btn-sm float-right t-width-100  mt-2"
+                                                           th:onclick="'showCancelBooking(' + ${ele.requestId} + ')'" >
+                                                      Chờ xác nhận
+                                                   </button>
                                                 </th:block>
                                                 <th:block th:if="${ele.bookingStatus==2}">
                                                    <button type="button" class="btn btn-primary btn-sm float-right t-width-100  mt-2"

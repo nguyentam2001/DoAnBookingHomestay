@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import static nvt.doan.utils.Constant.CANCEL_STATUS;
-import static nvt.doan.utils.Constant.CHECKOUT_STATUS;
+import static nvt.doan.utils.Constant.*;
 
 @Service
 @Component("bookingServiceImpl")
@@ -45,7 +45,6 @@ public class BookingServiceImpl  implements BookingService{
 
     @Override
     public Page<Booking> findBookingByUserId(Integer userId,int currentPage, int pageSize) {
-
         return bookingRepository.findBookingByUserId(userId, PageRequest.of(currentPage - 1, pageSize));
     }
 
@@ -114,7 +113,11 @@ public class BookingServiceImpl  implements BookingService{
     public void cancelBooking(CancelReasonDTO cancelReason) {
         Optional<Booking> bookingOptional=bookingRepository.findById(cancelReason.getRequestId());
         Booking booking=bookingOptional.get();
-        booking.setBookingStatus(CANCEL_STATUS);
+        booking.setBookingStatus(WAIT_CANCEL);
+        //Check if cancel day > checkIn date - 2day => set depositPrice=0
+        if(DATE_NOW.isAfter(booking.getLastDayCancel())){
+            booking.setDepositPrice(0.0);
+        }
         booking.setReason(cancelReason.getReason());
         bookingRepository.save(booking);
     }
@@ -132,6 +135,31 @@ public class BookingServiceImpl  implements BookingService{
         });
         return bookingsResponse;
     }
+
+    @Override
+    public BookingRequest getBookingRequestById(Integer requestId) {
+        Optional<Booking>bookingOptional=bookingRepository.findById(requestId);
+        Booking booking= bookingOptional.get();
+        ModelMapper modelMapper = new ModelMapper();
+        BookingRequest newBookingRequest = modelMapper.map(booking,BookingRequest.class);
+        newBookingRequest.setUser(userRepository.findUserByBookingId(booking.getRequestId()).get());
+        newBookingRequest.setRoom(roomRepository.findRoomByRequestId(booking.getRequestId()).get());
+        return newBookingRequest;
+    }
+
+    @Override
+    public void confirmCancelBooking(CancelReasonDTO cancelReason) {
+        Optional<Booking> bookingOptional=bookingRepository.findById(cancelReason.getRequestId());
+        Booking booking=bookingOptional.get();
+        booking.setBookingStatus(CANCEL_STATUS);
+        bookingRepository.save(booking);
+    }
+
+    @Override
+    public List<BookingRequest> getReportBookings() {
+        return getAllBookingsResponse();
+    }
+
 
     private double getTotalPriceDiscount(double totalPrice, Double percentDiscount) {
         return totalPrice-(totalPrice*(percentDiscount/100.0));

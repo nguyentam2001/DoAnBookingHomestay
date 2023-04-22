@@ -12,7 +12,8 @@ class App{
 }
 
 class BookingURL{
-     static ROOT="/api/v1/booking/bookings"
+     static ROOT="/api/v1/booking/bookings";
+     static REPORT="/api/v1/booking/report";
 }
 
 class HomestayURL{

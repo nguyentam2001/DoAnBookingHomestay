@@ -282,7 +282,7 @@
 <div class="container">
    <div class="row mt-4">
       <div class="col-xs-5 col-md-4 float-left"></div>
-      <div class="col-xs-4 col-md-3 float-left ">Tổng: <span th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</div>
+      <div class="col-xs-4 col-md-3 float-left t-total-price">Tổng: <span th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</div>
       <input type="hidden" name="totalPriceDiscount" th:value="${bookingResponse.totalPriceDiscount}"/>
       <div class="col-xs-3 col-md-2 float-left"><button value="Register" class="btn btn-primary btn-block " id="createPayment" >Thanh Toán</button>
       </div>

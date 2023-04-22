@@ -26,4 +26,10 @@ public class BookingRestController {
         bookingService.cancelBooking(cancelReason);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/confirmCancelBooking")
+    public ResponseEntity<?> confirmCancelBooking(@RequestBody CancelReasonDTO cancelReason){
+        bookingService.confirmCancelBooking(cancelReason);
+        return ResponseEntity.noContent().build();
+    }
 }

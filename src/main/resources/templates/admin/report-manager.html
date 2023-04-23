@@ -62,16 +62,14 @@
                         <div class="col-md-12">
                             <div class="t-flex">
                                 <span class="t-width-120 t-pt-5">Lọc theo tiêu chí:</span>
-                                <select class="form-control book_n" id="selectSort" name="selectSort">
-
-                                    <option value="asc" selected="selected">Giá từ thấp đến cao</option>
-
-                                    <option value="desc">Giá từ cao đến thấp</option>
-
-                                    <option value="ascRate">Đánh giá từ cao đến thấp</option>
-
-                                    <option value="descRate">Đánh giá từ thấp lên cao</option>
-
+                                <select class="book_n form-control" name="homestay"  id="homestay">
+                                    <option value="">-- chọn Homestay --</option>
+                                    <th:block th:each="ele:${homestays}">
+                                        <option th:value="${ele.homestayId}"
+                                                th:text="${ele.homestayName}"
+                                                th:selected="${ele.homestayId==selectedHomestay}">
+                                        </option>
+                                    </th:block>
                                 </select>
                             </div>
 
@@ -86,19 +84,19 @@
                         <div class="col-md-4">
                             <div class="t-flex">
                                 <span class="t-width-80 t-pt-5">Từ ngày:</span>
-                                <input type="date" class="form-control">
+                                <input type="date" th:value="${startDate}" id="startDate" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="t-flex">
                                 <span class="t-width-80 t-pt-5">Đến ngày:</span>
-                                <input type="date" class="form-control">
+                                <input type="date" th:value="${endDate}" id="endDate" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="t-flex t-flex-end float-right">
                                 <span class="t-width-80 t-pt-5">Doanh thu:</span>
-                               <span  class="t-width-80 t-pt-5" >8000</span>
+                               <p  class="t-width-80  t-total-price" id="totalPrice" >8000 VND</p>
                             </div>
                         </div>
 

@@ -16,6 +16,10 @@ class BookingURL{
      static REPORT="/api/v1/booking/report";
 }
 
+class DashboardURL{
+     static ROOT="/api/v1/dashboard/detail";
+}
+
 class HomestayURL{
      static ROOT="/api/v1/homestays/"
 }

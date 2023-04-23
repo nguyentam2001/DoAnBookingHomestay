@@ -156,8 +156,39 @@ public class BookingServiceImpl  implements BookingService{
     }
 
     @Override
-    public List<BookingRequest> getReportBookings() {
-        return getAllBookingsResponse();
+    public ReportDTO getReportBookings(Integer homestayId,LocalDate startDate,LocalDate endDate) {
+        ReportDTO reportDTO=new ReportDTO();
+        List<BookingRequest> result=new ArrayList<>();
+        List<BookingRequest> bookingRequestList= getAllBookingsResponse();
+        double totalPrice=0.0;
+        for (BookingRequest bookingRequest: bookingRequestList){
+            if(homestayId!=null&& homestayId.equals(bookingRequest.getRoom().getHomestay().getHomestayId())){
+                //check start date and end date
+                if(startDate.isBefore(bookingRequest.getStartDate()) && endDate.isAfter(bookingRequest.getStartDate())){
+                    double price=bookingRequest.getDepositPrice()==null?0:bookingRequest.getDepositPrice();
+                    totalPrice+=price;
+                    result.add(bookingRequest);
+                }
+            }
+        }
+        reportDTO.setTotalPrice(totalPrice);
+        reportDTO.setBookingRequestList(result);
+        reportDTO.setStartDate(startDate);
+        reportDTO.setEndDate(endDate);
+        return reportDTO;
+    }
+
+    public ReportDTO getReportBookings(){
+        ReportDTO reportDTO=new ReportDTO();
+        List<BookingRequest> bookingRequestList= getAllBookingsResponse();
+        double totalPrice=0.0;
+        for (BookingRequest bookingRequest: bookingRequestList){
+                    double price=bookingRequest.getDepositPrice()==null?0:bookingRequest.getDepositPrice();
+                    totalPrice+=price;
+        }
+        reportDTO.setTotalPrice(totalPrice);
+        reportDTO.setBookingRequestList(bookingRequestList);
+        return reportDTO;
     }
 
 

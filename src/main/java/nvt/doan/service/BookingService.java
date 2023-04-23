@@ -1,9 +1,6 @@
 package nvt.doan.service;
 
-import nvt.doan.dto.BookingDTO;
-import nvt.doan.dto.BookingRequest;
-import nvt.doan.dto.BookingResponse;
-import nvt.doan.dto.CancelReasonDTO;
+import nvt.doan.dto.*;
 import nvt.doan.entities.Booking;
 import org.springframework.data.domain.Page;
 
@@ -29,5 +26,6 @@ public interface BookingService {
 
     void confirmCancelBooking(CancelReasonDTO cancelReason);
 
-    List<BookingRequest> getReportBookings();
+    ReportDTO getReportBookings(Integer homestayId, LocalDate startDate, LocalDate endDate);
+    ReportDTO getReportBookings();
 }

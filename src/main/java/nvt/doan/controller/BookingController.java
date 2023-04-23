@@ -2,14 +2,13 @@ package nvt.doan.controller;
 
 import nvt.doan.dto.BookingDTO;
 import nvt.doan.service.BookingService;
+import nvt.doan.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -28,7 +27,18 @@ public class BookingController {
             return ResponseEntity.ok(bookingService.getAllBookingsResponse());
     }
     @GetMapping("/report")
-    public ResponseEntity<?> getReportBookings(){
-        return ResponseEntity.ok(bookingService.getReportBookings());
+    public ResponseEntity<?> getReportBookings(@RequestParam(name = "homestayId",required = false) String homestayId ,
+                                               @RequestParam(name = "startDate",required = false) String startDate ,
+                                               @RequestParam(name = "endDate",required = false) String endDate){
+        if(homestayId==null|| ("").equals(homestayId) || startDate==null || endDate==null){
+            return ResponseEntity.ok(bookingService.getReportBookings());
+        }else{
+            Integer homestayIdInt = Integer.parseInt(homestayId);
+            LocalDate startDateLD = DateUtil.convertStringToLocalDate(startDate);
+            LocalDate endDateLD=DateUtil.convertStringToLocalDate(endDate);
+            return ResponseEntity.ok(bookingService.getReportBookings(homestayIdInt,startDateLD,endDateLD));
+        }
     }
+
+
 }

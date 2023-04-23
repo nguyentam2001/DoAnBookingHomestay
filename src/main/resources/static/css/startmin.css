@@ -55,6 +55,12 @@ padding-right:0px
 
     align: center
 }
+
+.t-total-price{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
 .t-pt-5{
   padding-top:5px
 }
@@ -301,6 +307,7 @@ table.dataTable thead .sorting_desc:after {
     float: right;
     font-family: fontawesome;
 }
+
 
 table.dataTable thead .sorting:after {
     content: "\f0dc";

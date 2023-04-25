@@ -211,7 +211,8 @@ public class ViewHomeController {
         return "users/user-management";
     }
     @GetMapping("/payment-success")
-    public String getPagePaymentSuccess(Model model){
+    public String getPagePaymentSuccess(Model model,@RequestParam String vnp_ResponseCode){
+        String vnpResponseCode=vnp_ResponseCode;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth != null&& auth.isAuthenticated()  && !(auth instanceof AnonymousAuthenticationToken) ){
         model.addAttribute("successUrl","/view/users/list-receipts");

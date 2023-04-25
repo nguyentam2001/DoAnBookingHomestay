@@ -36,8 +36,8 @@ public class CustomHomestayRepositoryImpl implements CustomHomestayRepository{
                     public Object transformTuple(Object[] objects, String[] strings) {
                         return new HomestayClientDTO(
                                 ((Number) objects[0]).intValue(),
-                                (objects[1].toString()),
                                 (objects[2].toString()),
+                                (objects[1].toString()),
                                 ((Number) objects[3]).intValue(),new ArrayList<>(),
                                 0.0,
                                 0.0

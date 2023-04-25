@@ -68,7 +68,7 @@ public class VNPayService {
         String vnp_TxnRef = requestId.toString();
         String vnp_IpAddr = "0:0:0:0:0:0:0:1";
         String vnp_TmnCode = "8FJFOZEN";
-        double amount = totalPrice* 10000;
+        double amount = totalPrice* 100;
         Map vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);

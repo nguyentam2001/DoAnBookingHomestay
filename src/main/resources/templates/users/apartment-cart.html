@@ -154,7 +154,7 @@
                                                 </th:block>
                                                 <th:block th:if="${ele.bookingStatus==3}">
                                                    <button type="button" class="btn btn-danger btn-sm float-right t-width-100  mt-2"
-                                                           th:onclick="'showCancelBooking(' + ${ele.requestId} + ')'" >
+                                                           th:onclick="'showCancelBooking(' + ${ele.requestId} + ')'" disabled>
                                                       Chờ xác nhận
                                                    </button>
                                                 </th:block>

@@ -4,6 +4,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{users/head :: #head}">
 </head>
+<style>
+    .t-text-breadcrumb{
+        display:none;
+    }
+</style>
 <!-- body -->
 <body class="main-layout">
 <!-- loader  -->
@@ -64,7 +69,12 @@
                     <div class="card t-card-hover mt-0  pl-2 pr-2 pt-2 pb-2 rounded position-relative" >
                         <div class="row">
                             <div class="col-sm-12">
-                                <img class="d-block w-100" src="https://picsum.photos/150?image=641" alt="">
+                                <th:block th:if="${ele.images!=null&&ele.images.size()==0}">
+                                    <img class="d-block t-image-cover-card" src="https://picsum.photos/150?image=641" alt="">
+                                </th:block>
+                                <th:block th:if="${ele.images!=null&&ele.images.size()!=0}">
+                                    <img class="d-block t-image-cover-card" th:src="@{/images/__${ele.images.get(0).name}__}" alt="">
+                                </th:block>
                             </div>
                             <div class="col-sm-12">
                                 <div class="card-block">
@@ -77,7 +87,7 @@
                                     <p class="t-header-card-text-red mb-0 ">Bao gồm thuế, phí</p>
 
                                     <div class=" position-absolute top-0 start-0 t-cursor-pointer" th:onclick="'deleteRoomFavourite(' + ${ele.roomId} + ')'"><i class="t-header-card-text-red fa-sharp fa-solid fa-trash"></i></div>
-                                    <a href="#" class="btn btn-primary btn-sm float-right">Read More</a>
+                                    <span  onclick="history.go(-1)" class="btn btn-primary btn-sm float-right">Chi tiết</span>
                                 </div>
                             </div>
                         </div>

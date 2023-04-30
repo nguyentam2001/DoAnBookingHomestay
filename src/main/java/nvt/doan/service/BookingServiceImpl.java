@@ -30,7 +30,7 @@ import static nvt.doan.utils.Constant.*;
 
 @Service
 @Component("bookingServiceImpl")
-public class BookingServiceImpl  implements BookingService{
+public class BookingServiceImpl extends BaseServiceImpl<Booking,Integer>  implements BookingService {
 
 
     @Autowired
@@ -113,18 +113,26 @@ public class BookingServiceImpl  implements BookingService{
     public void cancelBooking(CancelReasonDTO cancelReason) {
         Optional<Booking> bookingOptional=bookingRepository.findById(cancelReason.getRequestId());
         Booking booking=bookingOptional.get();
-        booking.setBookingStatus(WAIT_CANCEL);
+        booking.setBookingStatus(CANCEL_STATUS);
         //Check if cancel day > checkIn date - 2day => set depositPrice=0
         if(DATE_NOW.isAfter(booking.getLastDayCancel())){
-            booking.setDepositPrice(0.0);
+            booking.setCancellationCost(booking.getDepositPrice());
+        }else{
+            booking.setCancellationCost(0.0);
         }
         booking.setReason(cancelReason.getReason());
         bookingRepository.save(booking);
     }
+
+    @Override
+    public Optional<Booking> findById(Integer bookingId) {
+        return bookingRepository.findById(bookingId);
+    }
+
     //get list booking response
     @Override
     public List<BookingRequest> getAllBookingsResponse() {
-        List<Booking> bookings= bookingRepository.findAll();
+        List<Booking> bookings= bookingRepository.findAll(Sort.by(Sort.Direction.DESC,"requestId"));
         List<BookingRequest> bookingsResponse=new ArrayList<>();
         ModelMapper modelMapper = new ModelMapper();
         bookings.forEach(booking -> {

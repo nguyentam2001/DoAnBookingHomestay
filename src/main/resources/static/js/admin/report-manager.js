@@ -27,7 +27,26 @@ function render() {
       { data: "endDate" },
       { data: "depositPrice" },
         ],
+         columnDefs:[
+                {
+                    targets:[6],
+                    className: "dt-right"
+                },
+                {
+                    targets:[4,5],
+                     render: $.fn.dataTable.render.moment('YYYY-MM-DD','DD/MM/YYYY' )
+                },
+                 {
+                              targets: 6,
+                              render: function(data, type,row){
+                                let formattedNumber = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data);
+                                return formattedNumber;
+                              }
+                 },
+            ]
+
     })
+
 }
 
 function searchReport(){
@@ -40,7 +59,8 @@ function searchReport(){
             endDate:$("#endDate").val(),
         },
         success: function (data) {
-             $("#totalPrice").text(`${data.totalPrice} VND`)
+        let formattedNumber = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.totalPrice);
+             $("#totalPrice").text(`${formattedNumber}`)
              destroyTable();
             $("#dataTables-example").DataTable({
                 data: data.bookingRequestList,
@@ -55,6 +75,23 @@ function searchReport(){
                   { data: "endDate" },
                   { data: "depositPrice" },
                     ],
+                    columnDefs:[
+                                    {
+                                        targets:[6],
+                                        className: "dt-right"
+                                    },
+                                    {
+                                        targets:[4,5],
+                                         render: $.fn.dataTable.render.moment('YYYY-MM-DD','DD/MM/YYYY' )
+                                    },
+                                     {
+                                                  targets: 6,
+                                                  render: function(data, type,row){
+                                                    let formattedNumber = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data);
+                                                    return formattedNumber;
+                                                  }
+                                     },
+                                ]
                 })
         },
         error: function (jqXHR, textStatus, errorThrown) {

@@ -9,6 +9,9 @@
 @import url("./homestay.css");
 body {
     background-color: #f8f8f8;
+    font-family:var(--font-family-sans-serif);
+    font-weight:var(--font-weight);
+    font-size:var(--font-size) !important;
 }
 
 #wrapper {
@@ -696,3 +699,10 @@ table.dataTable thead .sorting:after {
     color: #fff; /* active text color */
     background-color: #a94442; /* active bg color */
 }
+.dt-right{
+    text-align: right;
+}
+.dt-center{
+    text-align: center;
+}
+

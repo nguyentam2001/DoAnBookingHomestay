@@ -166,6 +166,12 @@ width: 100px;
        font-size: 12px;
        color: red;
 }
+
+.t-header-card-text-cancel{
+   margin-bottom: 0;
+       font-size: 12px;
+        color:#6c757d;
+}
 .t-text-red{
      color: red;
 }
@@ -270,6 +276,11 @@ background-image: none !important;
     color: #007bff;
 }
 
+.t-cancel-closed{
+ font-size: 20px;
+     font-weight: bold;
+    color:#6c757d;
+}
 
 
 

@@ -9,6 +9,9 @@ public interface Constant {
     public static final LocalDate DATE_NOW=LocalDate.now();
     public static final String PAYMENT_SUCCESS_STATUS="00";
     public static final Integer CHECKOUT_STATUS=0;
+
+    public static final Integer RENTING_STATUS=1;
+
     public static final Integer CANCEL_STATUS = 2;
-    public static final Integer WAIT_CANCEL = 3;
+    public static final Integer PAYMENT_FAIL = 3;
 }

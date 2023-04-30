@@ -15,6 +15,9 @@
     --icon-color:#495057;
     --btn-blue:#5454e7;
     --delete-btn-color:#ff0000;
+    --font-family-sans-serif:  "Helvetica", "Arial", sans-serif;
+    --font-weight: 500;
+    --font-size:16px;
 }
 .link-color{
     color: var(--btn-blue);

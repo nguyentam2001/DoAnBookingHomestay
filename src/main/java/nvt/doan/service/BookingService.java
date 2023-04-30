@@ -6,8 +6,9 @@ import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-public interface BookingService {
+public interface BookingService extends BaseService<Booking, Integer> {
     public Page<Booking> findBookingByUserId(Integer userId, int currentPage, int pageSize);
     public List<BookingDTO> findBookingDetailByUserId(Integer userId);
 
@@ -17,7 +18,7 @@ public interface BookingService {
 
     void cancelBooking(CancelReasonDTO cancelReason);
 
-
+    Optional<Booking> findById(Integer bookId);
 
     public List<BookingRequest> getAllBookingsResponse();
 

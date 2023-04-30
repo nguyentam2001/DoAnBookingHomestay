@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static nvt.doan.utils.Constant.CHECKOUT_STATUS;
 import static nvt.doan.utils.Constant.PAYMENT_SUCCESS_STATUS;
 
 @Service
@@ -35,12 +36,7 @@ public class VNPayService {
     @Transactional
     public WebPaymentDto createPayment(BookingRequest request){
         Booking booking= saveBooking(request);
-        WebPaymentDto webPaymentDto= createPaymentVNPay(booking.getRequestId(),request.getDepositPrice());
-        if(PAYMENT_SUCCESS_STATUS.equals(webPaymentDto.getStatus())){
-            booking.setBookingStatus(1);//payment success
-            bookingRepository.save(booking);
-        }
-        return webPaymentDto;
+        return createPaymentVNPay(booking.getRequestId(),request.getDepositPrice());
     }
 
     public Booking saveBooking(BookingRequest request){
@@ -55,7 +51,7 @@ public class VNPayService {
         booking.setUser(user.get());
         booking.setRoom(room.get());
         booking.setCreatedAt(LocalDateTime.now());//booking now
-        booking.setBookingStatus(0);//booking room is empty because user unpaid orders
+        booking.setBookingStatus(CHECKOUT_STATUS);//booking room is empty because user unpaid orders
         return  bookingRepository.save(booking);
     }
 
@@ -85,7 +81,7 @@ public class VNPayService {
         vnp_Params.put("vnp_Locale", "vn");
 
 //        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/shop/checkout/order/" + request.getOrderId());
-        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/view/users/payment-success");
+        vnp_Params.put("vnp_ReturnUrl", "http://localhost:8080/view/users/payment-success/"+requestId);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
 

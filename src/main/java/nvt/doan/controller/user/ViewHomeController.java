@@ -1,9 +1,7 @@
 package nvt.doan.controller.user;
 
-import nvt.doan.dto.BookingResponse;
-import nvt.doan.dto.HomestayClientDTO;
-import nvt.doan.dto.Priority;
-import nvt.doan.dto.RoomResponse;
+import com.fasterxml.jackson.databind.cfg.CoercionInputShape;
+import nvt.doan.dto.*;
 import nvt.doan.entities.*;
 import nvt.doan.service.*;
 import nvt.doan.service.account.AccountService;
@@ -26,11 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static nvt.doan.utils.Constant.*;
 
 @Controller
 @RequestMapping("/view/users")
@@ -49,8 +46,12 @@ public class ViewHomeController {
     @Autowired
     AccountService accountService;
 
+
     @Autowired
     RoomService roomService;
+
+
+
 
     @Autowired
     @Qualifier("bookingServiceImpl")
@@ -210,16 +211,23 @@ public class ViewHomeController {
         }
         return "users/user-management";
     }
-    @GetMapping("/payment-success")
-    public String getPagePaymentSuccess(Model model,@RequestParam String vnp_ResponseCode){
-        String vnpResponseCode=vnp_ResponseCode;
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth != null&& auth.isAuthenticated()  && !(auth instanceof AnonymousAuthenticationToken) ){
-        model.addAttribute("successUrl","/view/users/list-receipts");
-        }else{
-            return "redirect:/admin";
+    @GetMapping("/payment-success/{requestId}")
+    public String getPagePaymentSuccess(Model model,@RequestParam String vnp_ResponseCode,@PathVariable Integer requestId){
+       Optional<Booking> optional = bookingService.findById(requestId);
+       Booking booking =optional.get();
+        if(PAYMENT_SUCCESS_STATUS.equals(vnp_ResponseCode)){
+            //get booking by requestId;
+            booking.setBookingStatus(RENTING_STATUS);
+            bookingService.save(booking);
+            model.addAttribute("successUrl","/view/users/list-receipts");
+            return "component/payment-success-page";
+        }else {
+            booking.setBookingStatus(PAYMENT_FAIL);
+            booking.setDepositPrice(0.0);
+            bookingService.save(booking);
+            model.addAttribute("failUrl","/view/users/index");
+            return "component/payment-fail-page";
         }
-        return "component/payment-success-page";
     }
 
     @GetMapping("/list-receipts")

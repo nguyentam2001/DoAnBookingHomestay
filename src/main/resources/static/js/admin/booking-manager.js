@@ -19,7 +19,7 @@ function render() {
       { data: "depositPrice" },
       { data: "bookingStatus" },
     ],
-
+    order: [[0,'desc']],
     columnDefs: [
       {
         render: function (data, type, row) {
@@ -49,7 +49,19 @@ function render() {
         },
         targets: 3,
       },
-
+       {
+              targets: 6,
+              render: function(data, type,row){
+                let formattedNumber = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data);
+                return formattedNumber;
+              }
+       },
+       { targets: [ 6 ], className: 'dt-right' },
+       { targets: [ 2,4,5,8 ], className: 'dt-center' },
+       {
+             targets: [4,5],
+             render: $.fn.dataTable.render.moment('YYYY-MM-DD','DD/MM/YYYY' )
+         },
       {
         render: function (data, type, row) {
           if (data == 0) {
@@ -73,22 +85,17 @@ function destroyTable() {
   $("#dataTables-example").DataTable().destroy();
 }
 
-function confirmCancelBooking(bookingId,currentPage){
+function confirmBooking(bookingId,currentPage){
  $.ajax({
-        url: `/api/v1/users/booking/confirmCancelBooking`,
-        type: 'POST',
-       dataType:"json",
-                  contentType: "application/json",
-                   data: JSON.stringify({
-                           requestId: bookingId,
-                           reason:$(`#reason${bookingId}`).val(),
-                       }),
+        url: `/api/v1/users/booking/checkOutBooking?bookingId=${bookingId}`,
+        type: 'GET',
+        dataType: "json",
+        async: false,
         success:function(data){
-                    window.location.href=`/view/booking-manager`
+                  window.location.href=`/view/booking-manager`
         },
         error:function(data){
-                 console.log(data);
+                  console.log(data);
         }
     })
-
 }

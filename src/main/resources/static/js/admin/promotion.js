@@ -10,13 +10,25 @@ function render() {
     columns: [
       { data: "promotionId" },
       { data: "promotionName" },
-      { data: "homestay.homestayName" },
       { data: "percentDiscount" },
+      { data: "homestay.homestayName" },
       { data: "startDate" },
       { data: "endDate" },
       { data: "description" },
     ],
     columnDefs: [
+       {
+                   targets: [4,5],
+                   render: $.fn.dataTable.render.moment('YYYY-MM-DD','DD/MM/YYYY' )
+               },
+       {
+            targets:2,
+            render: function(data, type,row) {
+                return `${data}%`
+            }
+       },
+             { targets: [ 2 ], className: 'dt-right' },
+
       {
         render: function (data, type, row) {
           var html = "";

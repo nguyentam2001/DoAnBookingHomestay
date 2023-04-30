@@ -38,12 +38,12 @@ class BookingServiceImplTest {
      */
     @Test
     void testFindBookingDetailByUserId() {
-//        ArrayList<BookingDTO> bookingDTOList = new ArrayList<>();
-//        when(bookingRepository.findBookingDetailByUserId((Integer) any())).thenReturn(bookingDTOList);
-//        List<BookingDTO> actualFindBookingDetailByUserIdResult = bookingServiceImpl.findBookingDetailByUserId(1);
-//        assertSame(bookingDTOList, actualFindBookingDetailByUserIdResult);
-//        assertTrue(actualFindBookingDetailByUserIdResult.isEmpty());
-//        verify(bookingRepository).findBookingDetailByUserId((Integer) any());
+        ArrayList<BookingDTO> bookingDTOList = new ArrayList<>();
+        when(bookingRepository.findBookingDetailByUserId((Integer) any())).thenReturn(bookingDTOList);
+        List<BookingDTO> actualFindBookingDetailByUserIdResult = bookingServiceImpl.findBookingDetailByUserId(1);
+        assertSame(bookingDTOList, actualFindBookingDetailByUserIdResult);
+        assertTrue(actualFindBookingDetailByUserIdResult.isEmpty());
+        verify(bookingRepository).findBookingDetailByUserId((Integer) any());
     }
 
 }

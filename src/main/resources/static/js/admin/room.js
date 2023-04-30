@@ -69,6 +69,33 @@ function render() {
       },
       {
         render: function (data, type, row) {
+            if(data<10){
+                return `CH0${data}`;
+            }else{
+                return `CH${data}`;
+            }
+        },
+        targets:0
+      },
+      {
+              render: function (data, type, row) {
+                      return `${data}&#13217;`;
+              },
+              targets:5
+      },
+      {
+        targets:4,
+        render: function(data,type,row) {
+             let formattedNumber = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data);
+             return formattedNumber;
+        }
+      },
+      {
+        targets:[3,4,5],
+        className: 'dt-right'
+      },
+      {
+        render: function (data, type, row) {
           if (data == false) {
             return "Hoạt động";
           } else {

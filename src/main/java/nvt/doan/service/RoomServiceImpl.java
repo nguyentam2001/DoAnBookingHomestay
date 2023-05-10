@@ -54,6 +54,8 @@ public class RoomServiceImpl extends BaseServiceImpl<Room,Integer> implements Ro
                 .roomName(request.getRoomName())
                 .roomDescription(request.getRoomDescription())
                 .numberOfPerson(request.getNumberOfPerson())
+                .bedNumbers(request.getBedNumbers())
+                .area(request.getArea())
                 .price(request.getPrice())
                 .status(request.getStatus())
                 .roomType(request.getRoomType())

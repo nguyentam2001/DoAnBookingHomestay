@@ -3,6 +3,7 @@ package nvt.doan.controller;
 import lombok.Getter;
 import nvt.doan.dto.BookingRequest;
 import nvt.doan.dto.CardDTO;
+import nvt.doan.entities.Booking;
 import nvt.doan.repository.BookingRepository;
 import nvt.doan.repository.HomestayRepository;
 import nvt.doan.repository.RoomRepository;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static nvt.doan.utils.Constant.DATE_NOW;
 
@@ -123,7 +125,11 @@ public class ViewController {
 
     @GetMapping("/view-receipt/{requestId}")
     public String viewReceipt(@PathVariable Integer requestId,Model model){
+        Optional<Booking> booking = bookingService.findById(requestId);
         BookingRequest receipt=bookingService.getBookingRequestById(requestId);
+        receipt.setCancellationCost(booking.get().getCancellationCost());
+        receipt.setCancelTime(booking.get().getCancelTime());
+        receipt.setBookingTime(booking.get().getBookingTime());
         model.addAttribute("receipt",receipt);
         return "admin/detail-receipt";
     }

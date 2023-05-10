@@ -44,13 +44,19 @@
                         <div class="row border-top">
                            <div class="col-md-6">
                               <p><span th:text="${bookingResponse.totalDate}"></span> đêm</p>
+                              <th:block th:if="${bookingResponse.promotion!=null}">
+                                 <p >Giảm</p>
+                              </th:block>
                               <p>Tổng</p>
-                              <p  class=" border-top">Để giữ phòng, quý khách vui lòng thanh toán:</p>
+                              <p  class=" border-top">Để giữ phòng, quý khách vui lòng thanh toán tối thiểu:</p>
                            </div>
                            <div class="col-md-6 t-color-price border-left">
                               <p><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPrice, 0, 'COMMA', 0, 'POINT')}"></span> VND</p>
+                              <th:block th:if="${bookingResponse.promotion!=null}">
+                                 <p><span th:text="${bookingResponse.promotion.percentDiscount}"></span>%</p>
+                              </th:block>
                               <p><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</p>
-                              <p class=" border-top"><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span>VND</p>
+                              <p class=" border-top"><span  th:text="${#numbers.formatDecimal(bookingResponse.depositPrice, 0, 'COMMA', 0, 'POINT')}"></span>VND</p>
                            </div>
                         </div>
                         <div class="row">
@@ -77,7 +83,7 @@
                               <p class="text-primary" >Từ 14:00 ngày <span class="text-primary" th:text=" ${#temporals.format(bookingResponse.lastDayCancel,'dd/MM/yyyy')}"></span></p>
                            </div>
                            <div class="col-md-6 border-top t-color-price">
-                              <p><span  th:text="${#numbers.formatDecimal(bookingResponse.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND</p>
+                              <p><span  th:text="${#numbers.formatDecimal(bookingResponse.depositPrice, 0, 'COMMA', 0, 'POINT')}"></span> VND</p>
                            </div>
                         </div>
                      </div>

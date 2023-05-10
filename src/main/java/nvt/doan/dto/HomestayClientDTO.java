@@ -30,4 +30,5 @@ public class HomestayClientDTO {
     private List<Promotion> promotionList;
     private Double maxRoomPrice;
     private Double minRoomPrice;
+    private  String addressDetails;
 }

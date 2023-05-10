@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,6 +87,8 @@ public class BookingServiceImpl extends BaseServiceImpl<Booking,Integer>  implem
         newBooking.setTotalPrice((long) totalPrice);
         double totalPriceDiscount= getTotalPriceDiscount(totalPrice, percentDiscount);
         newBooking.setTotalPriceDiscount(totalPriceDiscount);
+        //Tiền đặt cọc bằng 1/3 số tổng số tiền thuê căn phòng
+        newBooking.setDepositPrice(totalPriceDiscount/3);
         //Tổng số ngày thuê
         newBooking.setTotalDate((int) ChronoUnit.DAYS.between(checkIn, checkOut));
         //Tính ngày huỷ phòng.
@@ -105,6 +108,7 @@ public class BookingServiceImpl extends BaseServiceImpl<Booking,Integer>  implem
     public void checkOutBooking(Integer bookingId) {
         Optional<Booking> bookingOptional=bookingRepository.findById(bookingId);
         Booking booking=bookingOptional.get();
+        booking.setActualPayment(booking.getTotalPriceDiscount());
         booking.setBookingStatus(CHECKOUT_STATUS);
         bookingRepository.save(booking);
     }
@@ -113,8 +117,10 @@ public class BookingServiceImpl extends BaseServiceImpl<Booking,Integer>  implem
     public void cancelBooking(CancelReasonDTO cancelReason) {
         Optional<Booking> bookingOptional=bookingRepository.findById(cancelReason.getRequestId());
         Booking booking=bookingOptional.get();
-        booking.setBookingStatus(CANCEL_STATUS);
+        //Chuyển trạng thái thành chờ xác nhận
+        booking.setBookingStatus(WAIT_CONFIRM);
         //Check if cancel day > checkIn date - 2day => set depositPrice=0
+        booking.setCancelTime(LocalDateTime.now());
         if(DATE_NOW.isAfter(booking.getLastDayCancel())){
             booking.setCancellationCost(booking.getDepositPrice());
         }else{

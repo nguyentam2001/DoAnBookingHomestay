@@ -89,25 +89,31 @@
                                     <input type="text" name="address" id="address" class="form-control "
                                            placeholder="Display Name" tabindex="3" th:value="${receipt.user.address}">
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p class="t-title">Nhận căn hộ:</p>
                                         <p th:text="${#temporals.format(receipt.startDate,'dd/MM/yyy')}">20 tháng 2 năm 20022</p>
+                                        <p>Tổng thời gian lưu trú:</p>
+                                        <p><span th:text="${receipt.totalDate}"></span>: đêm</p>
                                     </div>
                                     <div  class="col-md-6 border-left">
                                         <p class="t-title">Trả căn hộ:</p>
                                         <p th:text="${#temporals.format(receipt.endDate,'dd/MM/yyy')}">20 tháng 2 năm 20022</p>
+                                        <p>Huỷ trước ngày: <span th:text="${#temporals.format(receipt.lastDayCancel,'dd/MM/yyy')}"></span></p>
+                                        <p><span class="t-text-red">Hoàn 100%</span></p>
                                     </div>
                                 </div>
-                                <p>Tổng thời gian lưu trú:</p>
-                                <p><span th:text="${receipt.totalDate}"></span>: đêm</p>
+
                                 <div class="row">
                                     <div class="col-md-6 border-top">
                                         <p class="t-title pt-2">Bạn đã chọn</p>
                                         <p>1 căn hộ cho <span th:text="${receipt.numberPersons}"></span> người lớn</p>
                                         <p>Số giường ngủ: <span th:text="${receipt.room.bedNumbers}"></span></p>
                                         <p>Mô tả: <span th:text="${receipt.room.roomDescription}"></span></p>
+                                        <p class="t-text-red">Ngày đặt: <span th:text="${#temporals.format(receipt.bookingTime, 'dd/MM/yyyy HH:mm')}"></span></p>
+                                        <th:block th:if="${receipt.bookingStatus==2||receipt.bookingStatus==4}">
+                                            <p class="t-text-red">Ngày huỷ: <span  th:text="${#temporals.format(receipt.cancelTime, 'dd/MM/yyyy HH:mm')}"></span></p>
+                                        </th:block>
                                     </div>
                                     <div class="border-left col-md-6 border-top">
                                         <p class="t-title pt-2">Thanh toán</p>
@@ -124,9 +130,14 @@
                                             <th:block th:if="${receipt.bookingStatus==2}">
                                                 <span>Đã huỷ</span>
                                             </th:block>
+                                            <th:block th:if="${receipt.bookingStatus==4}">
+                                                <span>Chờ xác nhận huỷ</span>
+                                            </th:block>
                                         </p>
-
-                                        <th:block th:if="${receipt.bookingStatus==3||receipt.bookingStatus==4}">
+                                        <th:block th:if="${receipt.bookingStatus==3}">
+                                            <p class="t-text-red">Lý do huỷ: <span>Thanh toán không thành công</span></p>
+                                        </th:block>
+                                        <th:block th:if="${receipt.bookingStatus==2||receipt.bookingStatus==4}">
                                             <p class="t-text-red">Lý do huỷ: <span th:text="${receipt.reason}"></span></p>
                                         </th:block>
                                         <th:block th:if="${receipt.depositPrice==receipt.totalPriceDiscount}">
@@ -134,23 +145,42 @@
                                                 <span th:text="${#numbers.formatDecimal(receipt.totalPriceDiscount, 0, 'COMMA', 0, 'POINT')}"></span> VND
                                             </p>
                                         </th:block>
-
+                                            <p>Tiền đã thanh toán:
+                                                <span th:text="${#numbers.formatDecimal(receipt.actualPayment, 0, 'COMMA', 0, 'POINT')}"></span> VND
+                                            </p>
                                         <th:block th:if="${receipt.depositPrice!=receipt.totalPriceDiscount}">
                                             <p>Tiền cọc:
                                                 <span th:text="${#numbers.formatDecimal(receipt.depositPrice, 0, 'COMMA', 0, 'POINT')}"></span> VND
                                             </p>
                                         </th:block>
+                                        <th:block th:if="${receipt.cancellationCost!=0.0&& receipt.bookingStatus==4}">
+                                            <p class="t-text-red">Chi phí huỷ:
+                                                <span  th:text="${#numbers.formatDecimal(receipt.cancellationCost, 0, 'COMMA', 0, 'POINT')}"></span> VND
+                                            </p>
+                                        </th:block>
+                                        <th:block th:if="${receipt.bookingStatus==4}">
+                                            <p class="t-text-red">Hoàn trả:
+                                                <span  th:text="${#numbers.formatDecimal(receipt.actualPayment-receipt.cancellationCost, 0, 'COMMA', 0, 'POINT')}"></span> VND
+                                            </p>
+                                        </th:block>
 
-
+                                        <th:block th:if="${receipt.bookingStatus==2&& receipt.cancellationCost!=0.0}">
+                                            <p class="t-text-red">Đã hoàn trả:
+                                                <span  th:text="${#numbers.formatDecimal(receipt.actualPayment-receipt.depositPrice, 0, 'COMMA', 0, 'POINT')}"></span> VND
+                                            </p>
+                                        </th:block>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 border-top">
-
                                     </div>
                                     <div class=" col-md-6 border-top pt-4">
                                         <div class="row">
                                             <div class=" col-md-6 ">
+                                                <th:block th:if="${receipt.bookingStatus==4}">
+                                                    <button title="Xác nhận huỷ và Hoàn tiền (nếu có)" value="Register" class="btn btn-danger btn-block "
+                                                            tabindex="7" th:onclick="'confirmCancelBooking(' + ${receipt.requestId} + ')'" >Xác nhận huỷ</button>
+                                                </th:block>
                                                 <th:block th:if="${receipt.bookingStatus==1}">
                                                     <button value="Register" class="btn btn-danger btn-block "
                                                             tabindex="7" th:onclick="'confirmBooking(' + ${receipt.requestId} + ')'" >Hoàn thành</button>

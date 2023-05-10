@@ -100,6 +100,7 @@
                                    <div class="card-block">
                                       <!--           <h4 class="card-title">Small card</h4> -->
                                       <p class="t-header-card" th:text="${ele.homestayName}"></p>
+                                      <a th:href="@{'https://www.google.com/maps/?q=' + ${ele.addressDetails}}" target="_blank"><i class="fa-solid fa-location-dot"></i> Địa chỉ chi tiết</a>
                                       <p class="t-header-card-text-red" th:text="${ele.description}"></p>
                                       <p class="t-card-text mb-0" >Hiện tại đang có: <span th:text="${ele.roomAvailable}"></span> căn hộ trống</p>
                                       <p class="t-header-card mb-1">Giá giao động mỗi căn hộ/đêm từ: <span th:text="${#numbers.formatDecimal( ele.minRoomPrice,0,'COMMA',0,'POINT')}"></span> đến <span th:text="${#numbers.formatDecimal(ele.maxRoomPrice,0,'COMMA',0,'POINT')}"></span> VND</p>

@@ -23,6 +23,8 @@ public class Homestay {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private  Address address;
+
+    private  String addressDetails;
     private  String description;
     @OneToMany(mappedBy ="homestay")
     @JsonIgnore
@@ -33,4 +35,7 @@ public class Homestay {
     @OneToMany(mappedBy ="homestay",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Promotion> promotions;
+
+
+
 }

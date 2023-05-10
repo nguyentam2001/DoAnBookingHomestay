@@ -21,8 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static nvt.doan.utils.Constant.CHECKOUT_STATUS;
-import static nvt.doan.utils.Constant.PAYMENT_SUCCESS_STATUS;
+import static nvt.doan.utils.Constant.*;
 
 @Service
 public class VNPayService {
@@ -36,7 +35,7 @@ public class VNPayService {
     @Transactional
     public WebPaymentDto createPayment(BookingRequest request){
         Booking booking= saveBooking(request);
-        return createPaymentVNPay(booking.getRequestId(),request.getDepositPrice());
+        return createPaymentVNPay(booking.getRequestId(),request.getActualPayment());
     }
 
     public Booking saveBooking(BookingRequest request){
@@ -52,6 +51,7 @@ public class VNPayService {
         booking.setRoom(room.get());
         booking.setCreatedAt(LocalDateTime.now());//booking now
         booking.setBookingStatus(CHECKOUT_STATUS);//booking room is empty because user unpaid orders
+        booking.setBookingTime(LocalDateTime.now());//booking
         return  bookingRepository.save(booking);
     }
 

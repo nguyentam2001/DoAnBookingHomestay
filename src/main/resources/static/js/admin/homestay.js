@@ -91,9 +91,11 @@ function save() {
         data: JSON.stringify({
           homestayId: $("[name='homestayId']").val(),
           homestayName: $("[name='homestayName']").val(),
+          description:$("[name='description']").val(),
           address: {
                 addressId: $("[name='addressId']").val(),
-          }
+          },
+          addressDetails: $("[name='addressDetails']").val()
         }),
         success: function (res) {
           hideModal('#homestayForm');

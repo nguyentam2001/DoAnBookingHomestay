@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,8 +28,13 @@ public class BookingRequest {
     private Integer numberPersons;
     private LocalDate lastDayCancel;
     private Integer totalDate;
+    //cancellation cost ( Chi phí huỷ)
+    private Double cancellationCost;
     private Double depositPrice;
+    private Double actualPayment;
     private Double totalPriceDiscount;
+    private LocalDateTime bookingTime;
+    private LocalDateTime cancelTime;
     private String reason;
     private User user;
     private Room room;

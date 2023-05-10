@@ -29,7 +29,6 @@ public class AuthController {
         // Redirect to the success page
         httpServletResponse.setHeader("Location", "/success-page");
         httpServletResponse.setStatus(302);
-
         return ResponseEntity.ok(authService.login(request, httpServletResponse));
     }
     @GetMapping("/logout-handle")

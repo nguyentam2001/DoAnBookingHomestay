@@ -1,10 +1,13 @@
 package nvt.doan.controller.user;
 
 import com.fasterxml.jackson.databind.cfg.CoercionInputShape;
+import com.mailjet.client.errors.MailjetException;
+import com.mailjet.client.errors.MailjetSocketTimeoutException;
 import nvt.doan.dto.*;
 import nvt.doan.entities.*;
 import nvt.doan.service.*;
 import nvt.doan.service.account.AccountService;
+import nvt.doan.service.mail.MailjetService;
 import nvt.doan.utils.Constant;
 import nvt.doan.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ import static nvt.doan.utils.Constant.*;
 public class ViewHomeController {
     @Autowired
     AddressService addressService;
+
+    @Autowired
+    MailjetService mailjetService;
 
     @Autowired
     HomestayService homestayService;
@@ -212,13 +218,86 @@ public class ViewHomeController {
         return "users/user-management";
     }
     @GetMapping("/payment-success/{requestId}")
-    public String getPagePaymentSuccess(Model model,@RequestParam String vnp_ResponseCode,@PathVariable Integer requestId){
+    public String getPagePaymentSuccess(Model model,@RequestParam String vnp_ResponseCode,@PathVariable Integer requestId) throws MailjetSocketTimeoutException, MailjetException {
        Optional<Booking> optional = bookingService.findById(requestId);
        Booking booking =optional.get();
         if(PAYMENT_SUCCESS_STATUS.equals(vnp_ResponseCode)){
             //get booking by requestId;
             booking.setBookingStatus(RENTING_STATUS);
             bookingService.save(booking);
+            mailjetService.sendEmail("2001tambh@gmail.com",booking.getRoom().getHomestay().getHomestayName()+" xin chào quý khách!","<!DOCTYPE html>\n" +
+                    "<html lang=\"en\">\n" +
+                    "<head>\n" +
+                    "   <!-- basic -->\n" +
+                    "   <meta charset=\"utf-8\">\n" +
+                    "   <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                    "   <!-- mobile metas -->\n" +
+                    "   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                    "   <meta name=\"viewport\" content=\"initial-scale=1, maximum-scale=1\">\n" +
+                    "   <!-- site metas -->\n" +
+                    "   <title>felicity</title>\n" +
+                    "   <meta name=\"keywords\" content=\"\">\n" +
+                    "   <meta name=\"description\" content=\"\">\n" +
+                    "   <meta name=\"author\" content=\"\">\n" +
+                    "   <!-- bootstrap css -->\n" +
+                    "\n" +
+                    "   <!-- fevicon -->\n" +
+                    "   <link rel=\"icon\" href=\"images/fevicon.png\" type=\"image/gif\" />\n" +
+                    "   <!-- Scrollbar Custom CSS -->\n" +
+                    "   <link rel=\"stylesheet\" href=\"css/jquery.mCustomScrollbar.min.css\">\n" +
+                    "   <!-- Tweaks for older IEs-->\n" +
+                    "   <link rel=\"stylesheet\" href=\"https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css\">\n" +
+                    "   <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css\"\n" +
+                    "      media=\"screen\">\n" +
+                    "   <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\"\n" +
+                    "      integrity=\"sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==\"\n" +
+                    "      crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\" />\n" +
+                    "\n" +
+                    "   <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"\n" +
+                    "      integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n" +
+                    "   <!--[if lt IE 9]>\n" +
+                    "      <script src=\"https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js\"></script>\n" +
+                    "      <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script><![endif]-->\n" +
+                    "</head>\n" +
+                    "<!-- body -->\n" +
+                    "\n" +
+                    "<body class=\"main-layout\">\n" +
+                    "               <div class=\"row\" style=\"width: 800px;\" >\n" +
+                    "                  <div class=\"col-md-12 \">\n" +
+                    "                     <div class=\"card pl-0 ml-0 mr-0\">\n" +
+                    "                        <div class=\"card-body\">\n" +
+                    "                           <h2 class=\"card-title\">Chi tiết đặt căn hộ của bạn</h2>\n" +
+                    "                           <h3 class=\"mb-2 text-muted\">Homestay: "+booking.getRoom().getHomestay().getHomestayName()+"</h2>\n" +
+                    "                           <h3 class=\"mb-2 text-muted\">Địa chỉ: Nha Trang</h2>\n" +
+
+                    "                           <div class=\"row\">\n" +
+                    "                                 <div class=\"col-md-6\">\n" +
+                    "                                    <p>Nhận căn hộ:</p>\n" +
+                    "                                    <strong>"+booking.getStartDate()+"</strong>\n" +
+                    "                                 </div>\n" +
+                    "                                 <div class=\"col-md-6 border-left\">\n" +
+                    "                                    <p>Trả căn hộ:</p>\n" +
+                    "                                    <strong>"+booking.getEndDate()+"</strong>\n" +
+                    "                                 </div>\n" +
+                    "                           </div>\n" +
+                    "                           <p>Tổng thời gian lưu trú:</p>\n" +
+                    "                           <p>"+booking.getTotalDate()+": đêm</p>\n" +
+                    "                           <div class=\"row\">\n" +
+                    "                              <div class=\"col-md-12 border-top\">\n" +
+                    "                                 <p>Bạn đã chọn</p>\n" +
+                    "                                 <p>1 căn hộ cho <strong>"+booking.getNumberPersons()+"</strong> người lớn</p>\n" +
+                    "                                 <p>Tiền thanh toán: <strong style=\"color: red;\">" +booking.getActualPayment()+"</strong> VND</p>\n" +
+                    "                                 <p>Tiền thuê căn hộ: <strong style=\"color: red;\">"+booking.getTotalPriceDiscount()+"</strong>VND</p>\n" +
+                    "                                 <p>Mô tả căn hộ: "+ booking.getRoom().getRoomDescription()+"</p>\n" +
+                    "                              </div>\n" +
+                    "                           </div>\n" +
+                    "                        </div>\n" +
+                    "                     </div>\n" +
+                    "                  </div>\n" +
+                    "               </div>\n" +
+                    "</body>\n" +
+                    "\n" +
+                    "</html>");
             model.addAttribute("successUrl","/view/users/list-receipts");
             return "component/payment-success-page";
         }else {

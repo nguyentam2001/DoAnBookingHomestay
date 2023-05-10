@@ -20,6 +20,8 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static nvt.doan.utils.Constant.DEPOSIT_RATIO;
+
 @RestController
     @RequestMapping("/api/v1/users/pay")
 public class PaymentController {
@@ -32,13 +34,18 @@ public class PaymentController {
     public ResponseEntity<?> createPayment(@RequestBody BookingRequest request){
         httpSession.setAttribute("request", request);
         httpSession.setMaxInactiveInterval(100000);
-        request.setDepositPrice(request.getTotalPriceDiscount());
+//        request.setDepositPrice(request.getTotalPriceDiscount());
+        request.setDepositPrice(request.getTotalPriceDiscount()*DEPOSIT_RATIO);
+        //Thanh toán hết thì thanh toán thực tế = tổng số tiền thanh toán căn hộ
+        request.setActualPayment(request.getTotalPriceDiscount());
         return ResponseEntity.ok(vnPayService.createPayment(request));
     }
 
     @PostMapping("/deposit")
     public ResponseEntity<?> createDeposit(@RequestBody BookingRequest request){
-        request.setDepositPrice(request.getTotalPriceDiscount()/3);
+        request.setDepositPrice(request.getTotalPriceDiscount()*DEPOSIT_RATIO);
+        //Thanh toán đặt cọc thì số tiền thanh toán thực tế bằng số tiền đặt cọc
+        request.setActualPayment(request.getTotalPriceDiscount()*DEPOSIT_RATIO);
         return ResponseEntity.ok(vnPayService.createPayment(request));
     }
 

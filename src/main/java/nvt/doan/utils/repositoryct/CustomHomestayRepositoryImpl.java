@@ -17,7 +17,7 @@ public class CustomHomestayRepositoryImpl implements CustomHomestayRepository{
     private EntityManager entityManager;
     @Override
     public List<HomestayClientDTO> getHomestaysAndRoomAvailable(LocalDate checkIn, LocalDate checkOut, String numberPersons, String address) {
-        return (List<HomestayClientDTO>) entityManager.createNativeQuery("select h.homestay_id as homestayId,h.description as description,h.homestay_name as homestayName, count(r.room_id) as roomAvailable\n" +
+        return (List<HomestayClientDTO>) entityManager.createNativeQuery("select h.homestay_id as homestayId,h.description as description,h.homestay_name as homestayName, count(r.room_id) as roomAvailable, h.address_details as addressDetails\n" +
                         "  from homestay h \n" +
                         "  join address a on h.address_id = a.address_id\n" +
                         "  join room r on r.homestay_id= h.homestay_id \n" +
@@ -40,7 +40,8 @@ public class CustomHomestayRepositoryImpl implements CustomHomestayRepository{
                                 (objects[1].toString()),
                                 ((Number) objects[3]).intValue(),new ArrayList<>(),
                                 0.0,
-                                0.0
+                                0.0,
+                                (objects[4].toString())
                             );
                     }
                     @Override

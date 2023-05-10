@@ -42,7 +42,12 @@
                            <div class="card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
                               <div class="row">
                                  <div class="col-sm-3">
-                                    <img class="d-block t-image-cover-card width-50" src="https://picsum.photos/150?image=641" alt="">
+                                    <th:block th:if="${ele.room.images!=null&&ele.room.images.size()==0}">
+                                       <img class="d-block t-image-cover-card" src="https://picsum.photos/150?image=641" alt="">
+                                    </th:block>
+                                    <th:block th:if="${ele.room.images!=null&&ele.room.images.size()!=0}">
+                                       <img class="d-block t-image-cover-card" th:src="@{/images/__${ele.room.images.get(0).name}__}" alt="">
+                                    </th:block>
                                  </div>
                                  <div class="col-sm-9">
                                     <div class="card-block">
@@ -54,7 +59,8 @@
                                                    <p class="t-header-card-text-red"><span th:text="${ele.room.bedNumbers}"></span> Phòng ngủ </p>
                                                    <p class="t-card-text mb-0">Diện tích: <span th:text="${ele.room.area}"></span>m<sup>2</sup></p>
                                                    <p class="t-card-text mb-0">Mô tả: <span th:text="${ele.room.roomDescription}"></span></p>
-                                                   <p class="t-header-card mb-1">Loại phòng: <span th:text="${ele.room.roomType==1?'Cao cấp':'Thường'}"></span></p>
+                                                   <p class="t-header-card mb-0">Loại phòng: <span th:text="${ele.room.roomType==1?'Cao cấp':'Thường'}"></span></p>
+                                                   <a href="tel:0337966780" class="t-header-card"><i class="fa-solid fa-phone"></i> Liên hệ với chủ hộ</a>
                                                 </div>
                                                 <div class="col-md-6 border-left">
                                                    <p class="t-card-text">Tổng <span th:text="${ele.totalDate}"></span> ngày </p>
@@ -62,41 +68,58 @@
                                                    <th:block th:if="${ele.bookingStatus==1}">
                                                       <p class="t-header-card">Đang được thuê</p>
                                                    </th:block>
-                                                   <th:block th:if="${ele.bookingStatus==0}">
+                                                   <th:block th:if="${ele.bookingStatus==0&&ele.actualPayment>=ele.totalPriceDiscount}">
                                                       <p class="t-header-card">Đã hoàn tất</p>
+                                                   </th:block>
+                                                   <th:block th:if="${ele.bookingStatus==2}">
+                                                      <p class="t-header-card">Đã huỷ</p>
                                                    </th:block>
                                                 </div>
                                              </div>
 
                                              <div class="row border-top">
                                                 <div class="col-md-6">
-                                                   <p>Nhận căn hộ:</p>
+                                                   <p class="mb-0">Nhận căn hộ:</p>
                                                    <input type="hidden" th:value="${ele.startDate}" name="startDate"/>
                                                    <p class="text-primary" th:text="${#temporals.format(ele.startDate,'dd/MM/yyy')}"></p>
                                                 </div>
                                                 <div class="col-md-6 border-left">
-                                                   <p>Trả căn hộ:</p>
+                                                   <p class="mb-0">Trả căn hộ:</p>
                                                    <input type="hidden" th:value="${ele.endDate}" name="endDate"/>
                                                    <p class="text-primary" th:text="${#temporals.format(ele.endDate,'dd/MM/yyyy')}"></p>
                                                 </div>
                                              </div>
+
                                           </div>
                                           <div class="col-5">
                                              <div class="row">
                                                 <div class="col-md-12">
-                                                   <th:block th:if="${ele.totalPriceDiscount == ele.depositPrice && ele.bookingStatus!=2}">
-                                                      <div class="row">
-                                                         <div class="col-md-12">
-                                                            <p class="t-total-price float-right"><span> Đã thanh toán tổng:</span>
-                                                               <span  th:text="${#numbers.formatDecimal(ele.totalPriceDiscount,0,'COMMA',0,'POINT')} "></span>
-                                                               <span class="t-header-card-text-red">vnđ</span></p>
-                                                         </div>
-                                                      </div>
-
-                                                   </th:block>
-                                                   <th:block th:if="${ele.totalPriceDiscount > ele.depositPrice&& ele.bookingStatus!=2}">
+<!--                                                   <th:block th:if="${ele.totalPriceDiscount == ele.actualPayment && ele.bookingStatus!=2}">-->
+<!--                                                      <div class="row">-->
+<!--                                                         <div class="col-md-12">-->
+<!--                                                            <p class="t-total-price float-right"><span> Đã thanh toán tổng:</span>-->
+<!--                                                               <span  th:text="${#numbers.formatDecimal(ele.totalPriceDiscount,0,'COMMA',0,'POINT')} "></span>-->
+<!--                                                               <span class="t-header-card-text-red">vnđ</span></p>-->
+<!--                                                         </div>-->
+<!--                                                      </div>-->
+<!--                                                   </th:block>-->
+                                                   <th:block th:if="${ele.bookingStatus!=2}">
                                                       <p class="float-right t-total-price">
-                                                         <span> Đã đặt cọc:</span>
+                                                         <span> Đã thanh toán:</span>
+                                                         <span  th:text="${#numbers.formatDecimal(ele.actualPayment,0,'COMMA',0,'POINT')} "></span>
+                                                         <span class="t-header-card-text-red">vnđ</span>
+                                                      </p>
+                                                   </th:block>
+                                                   <th:block th:if="${ele.bookingStatus!=2&&ele.bookingStatus!=4}">
+                                                      <p class="t-header-card-text-red mb-0 float-right">
+                                                         <span> Đặt cọc:</span>
+                                                         <span  th:text="${#numbers.formatDecimal(ele.depositPrice,0,'COMMA',0,'POINT')} "></span>
+                                                         <span class="t-header-card-text-red">vnđ</span>
+                                                      </p>
+                                                   </th:block>
+                                                   <th:block th:if="${ele.bookingStatus==4&& ele.cancellationCost!=0.0}">
+                                                      <p class="t-header-card-text-red mb-0 float-right">
+                                                         <span> Tiền cọc:</span>
                                                          <span  th:text="${#numbers.formatDecimal(ele.depositPrice,0,'COMMA',0,'POINT')} "></span>
                                                          <span class="t-header-card-text-red">vnđ</span>
                                                       </p>
@@ -113,7 +136,11 @@
                                                       </div>
                                                       <div class="row">
                                                          <div class="col-md-12">
-                                                            <p class="t-header-card-text-red mb-0 float-right">Tiền đặt cọc: <span th:text="${#numbers.formatDecimal(ele.depositPrice,0,'COMMA',0,'POINT')}" ></span> vnđ</p>
+                                                            <p class="t-header-card-text-red mb-0 float-right">Tiền đã thanh toán: <span th:text="${#numbers.formatDecimal(ele.actualPayment,0,'COMMA',0,'POINT')}" ></span> vnđ</p>
+<!--                                                            <th:block th:if="${ele.totalPriceDiscount==ele.actualPayment}">-->
+<!--                                                               <p class="t-header-card-text-red mb-0 float-right">Số tiền còn lại sẽ được gửi vào tài </p>-->
+<!--                                                               <p class="t-header-card-text-red mb-0 float-right">khoản quý khách trong vòng 24h</p>-->
+<!--                                                            </th:block>-->
                                                          </div>
                                                       </div>
                                                    </th:block>
@@ -125,7 +152,7 @@
                                                    <p class="t-header-card-text-red mb-0 float-right">Bao gồm thuế, phí</p>
                                                 </div>
                                              </div>
-                                             <th:block th:if="${(ele.totalPriceDiscount == ele.depositPrice)&&(ele.roomRate==null)&&(ele.bookingStatus==0)}">
+                                             <th:block th:if="${(ele.totalPriceDiscount == ele.actualPayment)&&(ele.roomRate==null)&&(ele.bookingStatus==0)}">
                                                 <div class="row">
                                                    <div class="col-md-12">
                                                       <!-- Button trigger modal -->
@@ -136,7 +163,7 @@
                                                    </div>
                                                 </div>
                                              </th:block>
-                                             <th:block th:if="${(ele.totalPriceDiscount == ele.depositPrice)&&(ele.roomRate!=null)}">
+                                             <th:block th:if="${(ele.totalPriceDiscount == ele.actualPayment)&&(ele.roomRate!=null)}">
                                                 <div class="row">
                                                    <div class="col-md-12">
                                                       <p class="t-header-card-text-red mb-0 float-right">Đánh giá <span th:text="${#numbers.formatInteger(ele.roomRate.ratePoints,1)}"></span>/5 Sao</p>
@@ -154,7 +181,7 @@
                                              </th:block>
                                              <div class="row">
                                                 <div class="col-md-12">
-                                                   <th:block th:if="${(ele.totalPriceDiscount == ele.depositPrice)&& (ele.bookingStatus==1)}">
+                                                   <th:block th:if="${(ele.totalPriceDiscount == ele.actualPayment)&& (ele.bookingStatus==1)}">
                                                       <button type="button" class="btn btn-primary btn-sm float-right t-width-100  mt-2"
                                                               th:onclick="'returnBookingRoom(' + ${ele.requestId} + ')'">
                                                          Trả phòng
@@ -170,12 +197,20 @@
                                                          Huỷ phòng
                                                       </button>
                                                    </th:block>
-                                                   <!--                                                <th:block th:if="${ele.bookingStatus==3}">-->
-                                                   <!--                                                   <button type="button" class="btn btn-danger btn-sm float-right t-width-100  mt-2"-->
-                                                   <!--                                                           th:onclick="'showCancelBooking(' + ${ele.requestId} + ')'" disabled>-->
-                                                   <!--                                                      Chờ xác nhận-->
-                                                   <!--                                                   </button>-->
-                                                   <!--                                                </th:block>-->
+                                                        <th:block th:if="${ele.bookingStatus==4}">
+                                                           <div class="row">
+                                                              <div class="col-md-12">
+                                                              <th:block th:if="${ele.totalPriceDiscount==ele.actualPayment}">
+                                                                 <p class="t-header-card-text-red mb-0 float-right">Số tiền còn lại sẽ được gửi vào tài </p>
+                                                                 <p class="t-header-card-text-red mb-0 float-right">khoản quý khách trong vòng 24h</p>
+                                                              </th:block>
+                                                              </div>
+                                                           </div>
+                                                            <button type="button" class="btn btn-danger btn-sm float-right t-width-100  mt-2"
+                                                                    th:onclick="'showCancelBooking(' + ${ele.requestId} + ')'" disabled>
+                                                                    Chờ xác nhận
+                                                            </button>
+                                                        </th:block>
                                                    <th:block th:if="${ele.bookingStatus==2}">
                                                       <button type="button" class="btn btn-primary btn-sm float-right t-width-100  mt-2"
                                                               th:onclick="'showCancelBooking(' + ${ele.requestId} + ')'" disabled >
@@ -184,7 +219,6 @@
                                                    </th:block>
                                                 </div>
                                              </div>
-
                                           </div>
                                        </div>
                                     </div>

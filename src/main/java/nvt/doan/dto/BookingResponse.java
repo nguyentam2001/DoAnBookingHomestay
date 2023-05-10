@@ -21,6 +21,7 @@ public class BookingResponse extends RoomResponse {
         private Integer totalDate;
         //Bàng tổng giá nhân với phần trăm giảm nếu có
         private double totalPriceDiscount;
+        private double depositPrice;
         private Integer numberPersons;
         private LocalDate lastDayCancel;
 }

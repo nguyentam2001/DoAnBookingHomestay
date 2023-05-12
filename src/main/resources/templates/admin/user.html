@@ -56,7 +56,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <div  class="row">
-                        <button class="ml-16 mb-16 btn btn-primary" onclick="showFormAdd();">Thêm khách hàng</button>
+                        <button class="ml-16 mb-16 btn btn-primary" onclick="showFormAdd();" disabled>Thêm khách hàng</button>
                     </div>
 
                     <!-- /.row -->
@@ -148,13 +148,13 @@
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label  class="form-label font-weight-bold">Tên tài khoản<span class="error"> </span> </label>
-                                                            <input type="text" name="username" class="form-control" placeholder="tài khoản">
+                                                            <input type="text" name="username" class="form-control" placeholder="tài khoản" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label  class="form-label font-weight-bold">Email<span class="error"> </span> </label>
-                                                            <input type="text" name="email" class="form-control"   placeholder="email">
+                                                            <input type="text" name="email" class="form-control"   placeholder="email" readonly>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label class="form-label font-weight-bold">Tuổi<span class="error"></span> </label>
@@ -164,14 +164,14 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-12">
                                                             <label class="form-label font-weight-bold">Địa chỉ<span class="error"> </span> </label>
-                                                            <input type="text" name="address" class="form-control"  placeholder="địa chỉ">
+                                                            <input type="text" name="address" class="form-control"  placeholder="địa chỉ" >
                                                         </div>
                                                     </div>
 
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label  class="form-label font-weight-bold">Số điện thoại   <span class="error"> </span> </label>
-                                                            <input type="text" name="phone" id="phone"  class="form-control" placeholder="số điện thoại">
+                                                            <input type="text" name="phone" id="phone"  class="form-control" placeholder="số điện thoại" readonly>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label  class="form-label font-weight-bold">Giới tính<span class="error"> </span> </label>
@@ -183,8 +183,9 @@
                                                     </div>
 
                                                     <div class="form-row">
-                                                        <div  id="bookingList" class="ml-16 mr-16">
-
+                                                        <div class="form-group col-md-12">
+                                                            <label  class="form-label font-weight-bold">Mật khẩu<span class="error"> </span> </label>
+                                                            <input type="password" name="password" id="password"  class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -295,7 +296,6 @@
         <!-- Custom Theme JavaScript -->
         <script src="../js/startmin.js"></script>
         <script src="../js/utils.js"></script>
-
         <script src="../js/admin/user.js"></script>
     </body>
 </html>

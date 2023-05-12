@@ -23,9 +23,9 @@ public class Homestay {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private  Address address;
-
     private  String addressDetails;
     private  String description;
+    private String image;
     @OneToMany(mappedBy ="homestay")
     @JsonIgnore
     private List<HomestayRate> homestayRates;

@@ -19,9 +19,9 @@ function render() {
       {
         render: function (data, type, row) {
           var html = "";
-          html += `<span class="link-color" id="'${row.homestayId}'" onclick="showHomestayDetail('${row.homestayId}');"></i>View |</span>`;
-            html += ` <a href="/view/homestay-form?homestayId=${row.homestayId}"> Update |</a>`;
-            html += ` <span class="link-color" data-toggle="modal" data-target="#deleteModal${row.homestayId}" onclick="delete('${row.homestayId}');"></i> Delete</span>
+          html += `<span class="link-color" id="'${row.homestayId}'" onclick="showHomestayDetail('${row.homestayId}');"></i>Xem |</span>`;
+            html += ` <a href="/view/homestay-form?homestayId=${row.homestayId}"> Sửa |</a>`;
+            html += ` <span class="link-color" data-toggle="modal" data-target="#deleteModal${row.homestayId}" onclick="delete('${row.homestayId}');"></i> Xoá</span>
                                           <div class="modal fade" id="deleteModal${row.homestayId}" tabindex="-1" role="dialog"
                                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">

@@ -25,10 +25,10 @@ public class HomestayClientDTO {
     private int homestayId;
     private String homestayName;
     private  String description;
-
     private  Integer roomAvailable;
     private List<Promotion> promotionList;
     private Double maxRoomPrice;
     private Double minRoomPrice;
     private  String addressDetails;
+    private String image;
 }

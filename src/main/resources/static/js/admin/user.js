@@ -99,6 +99,7 @@ function showUpdate(id) {
         $("[name='phone']").val(res.phone),
         $("[name='gender']").val(res.gender),
         $("[name='age']").val(res.age);
+        $("[name='password']").val(res.password);
         showModal();
     },
     error: function (e) {
@@ -204,7 +205,6 @@ function save() {
       get();
     },
     error: function (e) {
-      toastr.error(e.responseJSON.message);
       hideModal();
       get();
     },

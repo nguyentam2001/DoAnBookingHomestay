@@ -94,8 +94,14 @@
                           <div class="t-cursor-pointer t-card-hover card ml-0 mt-0 mr-0 pl-2 pr-2 pt-2 pb-2 rounded">
                              <div class="row">
                                 <div class="col-sm-4">
-                                   <img class="d-block w-100 h-100" src="https://picsum.photos/150?image=641" alt="">
+                                   <th:block th:if="${ele.image==null}">
+                                      <img class="d-block t-image-cover-card w-100 h-100" src="https://picsum.photos/150?image=641" alt="">
+                                   </th:block>
+                                   <th:block th:if="${ele.image!=null}">
+                                      <img class="d-block t-image-cover-card w-100 h-100" th:src="@{/images/user/__${ele.image}__}" alt="">
+                                   </th:block>
                                 </div>
+
                                 <div class="col-sm-8">
                                    <div class="card-block">
                                       <!--           <h4 class="card-title">Small card</h4> -->

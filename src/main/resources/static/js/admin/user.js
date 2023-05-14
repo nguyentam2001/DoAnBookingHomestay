@@ -44,11 +44,11 @@ function render(arr) {
       <td>${el.phone}</td>
       <td>${el.gender == "male" ? "Nam" : "Nữ"}</td>
       <td>
-          <span class="link-color" onclick="showUserDetail('${el.userId}');"></i>View</span>
+          <span class="link-color" onclick="showUserDetail('${el.userId}');"></i>Xem</span>
           ${
             el.bookings.length > 0
-              ? `| <span class="link-color" onclick="showUpdate('${el.userId}');"></i>Update</span>`
-              : `| <span class="link-color" data-toggle="modal" data-target="#deleteModal${el.userId}" onclick="delete('${el.userId}');"></i>Delete</span>`
+              ? `| <span class="link-color" onclick="showUpdate('${el.userId}');"></i>Sửa</span>`
+              : `| <span class="link-color" data-toggle="modal" data-target="#deleteModal${el.userId}" onclick="delete('${el.userId}');"></i>Xoá</span>`
           }
 
           <div class="modal fade" id="deleteModal${el.userId}" tabindex="-1" role="dialog"

@@ -117,10 +117,10 @@ function render() {
         render: function (data, type, row) {
           var html = "";
           if (row["status"] == true||row["bookingList"].length!=0) {
-            html += ` <a href="/view/room/update?roomId=${row.roomId}">Update</a>`;
+            html += ` <a href="/view/room/update?roomId=${row.roomId}">Sửa</a>`;
           } else {
-            html += ` <a href="/view/room/update?roomId=${row.roomId}">Update</a>`;
-            html += ` <span class="link-color" data-toggle="modal" data-target="#deleteModal${row.roomId}" onclick="delete('${row.roomId}');"></i>Delete</span>
+            html += ` <a href="/view/room/update?roomId=${row.roomId}">Sửa</a>`;
+            html += ` <span class="link-color" data-toggle="modal" data-target="#deleteModal${row.roomId}" onclick="delete('${row.roomId}');"></i> | Xoá</span>
                                           <div class="modal fade" id="deleteModal${row.roomId}" tabindex="-1" role="dialog"
                                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">

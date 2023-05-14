@@ -32,8 +32,8 @@ function render() {
       {
         render: function (data, type, row) {
           var html = "";
-          html += `<span class="link-color" id="'${row.promotionId}'" onclick="showPromotionDetail('${row.promotionId}');"></i>View |</span>`;
-          html += ` <span class="link-color" data-toggle="modal" data-target="#deleteModal${row.promotionId}" onclick="delete('${row.promotionId}');"></i> Delete</span>
+          html += `<span class="link-color" id="'${row.promotionId}'" onclick="showPromotionDetail('${row.promotionId}');"></i>Xem |</span>`;
+          html += ` <span class="link-color" data-toggle="modal" data-target="#deleteModal${row.promotionId}" onclick="delete('${row.promotionId}');"></i> Xoá</span>
                                           <div class="modal fade" id="deleteModal${row.promotionId}" tabindex="-1" role="dialog"
                                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">

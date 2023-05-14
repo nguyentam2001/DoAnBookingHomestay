@@ -46,15 +46,16 @@
                         </div>
                         <div class="col-md-3">
                            <label class="date t-title">Ngày nhận</label>
-                           <input class="book_n" name="checkIn" placeholder="Ngày nhận" type="date" th:value="${checkIn}"  >
+                           <input class="book_n" name="checkIn" id="checkIn" th:min="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" placeholder="Ngày nhận" type="date" th:value="${checkIn}"  >
                         </div>
                         <div class="col-md-3">
                            <label class="date t-title">Ngày trả</label>
-                           <input class="book_n" name="checkOut" placeholder="Ngày trả" type="date" th:value="${checkOut}"  >
+<!--                           th:min="2023-05-20"-->
+                           <input class="book_n" name="checkOut" id="checkOut" th:min="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"   placeholder="Ngày trả" type="date" th:value="${checkOut}"  >
                         </div>
                         <div class="col-md-2">
                            <label class="date t-title">Số khách</label>
-                           <input class="book_n" placeholder="Số khách" type="number" name="numberPersons" value="2">
+                           <input class="book_n" placeholder="Số khách" type="number" name="numberPersons" value="2" min="1">
                         </div>
                         <div class="col-md-2">
                            <button class="book_btn w-75 t-m-top-bottom-46">Tìm kiếm</button>

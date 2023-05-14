@@ -19,7 +19,7 @@ function render() {
       { data: "actualPayment" },
       { data: "bookingStatus" },
     ],
-    order: [[0,'desc']],
+    order: [[4,'desc']],
     columnDefs: [
       {
         render: function (data, type, row) {

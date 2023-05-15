@@ -23,8 +23,8 @@ public class CustomHomestayRepositoryImpl implements CustomHomestayRepository{
                         "  join room r on r.homestay_id= h.homestay_id \n" +
                         "  where r.room_id in (\n" +
                         "  select room_id from room where status=0 and room_id\n" +
-                        " not in (select room_id from booking where :checkIn >= start_date\n" +
-                        " and :checkOut <= end_date and booking_status=0 )\n" +
+                        " not in (select room_id from booking where ((start_date < :checkIn AND end_date > :checkOut) OR (start_date < :checkIn AND  :checkIn<end_date) OR (:checkIn<start_date AND :checkOut>start_date))\n" +
+                        " AND  room_id  IN (SELECT room_id FROM Booking WHERE booking_status= 1) )\n" +
                         "  ) and a.address_id=:address and r.number_of_person >= :numberPersons\n" +
                         "  group by h.homestay_id").unwrap(Query.class)
                 .setParameter("checkIn", checkIn)

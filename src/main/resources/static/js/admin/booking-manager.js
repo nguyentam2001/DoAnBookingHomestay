@@ -65,15 +65,15 @@ function render() {
       {
         render: function (data, type, row) {
           if (data == 0) {
-            return `Hoàn thành`;
+            return `<div class="success">Hoàn thành</div>`;
           } else if (data == 1) {
-            return `Đang thuê`;
+            return `<div class="rating">Đang thuê</div>`;
           } else if (data == 2) {
-            return `Đã huỷ`;
+            return `<div class="cancel">Đã huỷ</div>`;
           } else if (data == 4) {
-            return `Chờ xác nhận`;
+            return `<div class="waiting-cancel">Chờ xác nhận</div>`;
           }else{
-            return `Thanh toán không thành công`;
+            return `<div class="payment-fail">Thanh toán không thành công</div>`;
           }
         },
         targets: 7,
